@@ -1,8 +1,7 @@
 from direct.showbase.ShowBase import ShowBase
 from direct.task.Task import Task
-from panda3d.core import WindowProperties
-from panda3d.core import Vec3
-from panda3d.core import BitMask32
+from panda3d.core import WindowProperties, Vec3, BitMask32
+from panda3d.core import AmbientLight
 
 from panda3d.bullet import BulletWorld, BulletRigidBodyNode
 from panda3d.bullet import BulletPlaneShape
@@ -36,6 +35,11 @@ class Game(ShowBase):
             self.debug_np.node().show_normals(False)
             self.debug_np.show()
             global_input.subscribe_to_event("p", self.toggle_debug)
+
+        # ambient_light = AmbientLight("ambient light")
+        # ambient_light.set_color((0.8, 0.8, 0.8, 1))
+        # ambient_light_np = self.render.attach_new_node(ambient_light)
+        # self.render.set_light(ambient_light_np)
 
         self.world = BulletWorld()
         self.world.set_gravity(GRAVITY)
