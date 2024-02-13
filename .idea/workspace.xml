@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameClientRepository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GameServerRepository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/direct.dc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIDGameObject.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIDGameObjectAI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIRepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/DGameObject.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/GameClient.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/GameServer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/ServerRepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedNetwork/sample.dc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Direct client-server/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedNetwork/ClientRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Direct client-server/GameServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServerRepository.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/direct.dc" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedNetwork/direct.dc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,39 +46,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.01_Basics.executor": "Run",
-    "Python.02_Shapes.executor": "Run",
-    "Python.03_Heightfield.executor": "Run",
-    "Python.17_Character.executor": "Run",
-    "Python.25_SoftbodyTetra.executor": "Run",
-    "Python.Client.executor": "Run",
-    "Python.Game.executor": "Run",
-    "Python.Helpers.executor": "Run",
-    "Python.Player.executor": "Run",
-    "Python.Server.executor": "Run",
-    "Python.SimpleThirdPersonCameraTester.executor": "Run",
-    "Python.Testi.executor": "Run",
-    "Python.character.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/roee/Desktop/SimpleThirdPersonCamera-main",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
+    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/Desktop/SimpleThirdPersonCamera-main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Distributed Network" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Direct client-server" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Game">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="NetworkGame" />
       <option name="ENV_FILES" value="" />
@@ -180,7 +189,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1707065240641</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="changes">
+      <option name="closed" value="true" />
+      <created>1707466042456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1707466042456</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

@@ -1,16 +1,22 @@
-from direct.distributed.ClientRepository import ClientRepository
+# imports for the engine
 from direct.showbase.ShowBase import ShowBase
+
+from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-import builtins
+from DGameObject import DGameObject
+from AIDGameObject import AIDGameObject
+
+# initialize the engine
+base = ShowBase()
 
 
 class GameClientRepository(ClientRepository):
     def __init__(self):
-        dc_file_names = ["direct.dc"]
+        dc_file_names = ["direct.dc", "sample.dc"]
 
         # a distributed object for our game
-        self.distributed_object = None
-        self.ai_Dgame_object = None
+        self.distributed_object: DGameObject | None = None
+        self.ai_d_game_object: AIDGameObject | None = None
 
         ClientRepository.__init__(self, dcFileNames=dc_file_names, threadedNet=True)
 
@@ -26,7 +32,7 @@ class GameClientRepository(ClientRepository):
         # Make sure to pass the connectMethod to the ClientRepository.__init__
         # call too.  Available connection methods are:
         # self.CM_HTTP, self.CM_NET and self.CM_NATIVE
-        self.url = URLSpec("https://{}:{}".format(host_name, tcp_port))
+        self.url = URLSpec("http://{}:{}".format(host_name, tcp_port))
 
         # Attempt a connection to the server
         self.connect([self.url],
@@ -38,15 +44,21 @@ class GameClientRepository(ClientRepository):
                 unexpectedly lost connection to the gameserver. """
         # Handle the disconnection from the server.  This can be a reconnect,
         # simply exiting the application or anything else.
-        exit()
+        print("Lost connection. Attempts reconnect...")
+        self.connect([self.url],
+                     successCallback=self.connect_success,
+                     failureCallback=self.connect_failure)
 
     def connect_failure(self, status_code, status_string):
         """ Something went wrong """
+        # we could create a reconnect task to try and connect again.
+        print("Failed to connect"
+              "\nstatus code: {}, status string: {}".format(status_code, status_string))
         exit()
 
     def connect_success(self):
         """ Successfully connected.  But we still can't really do
-                anything until we've got the doID range. """
+        anything until we've got the doID range. """
 
         # Make sure we have interest in the AIRepository defined
         # TimeManager zone, so we always see it even if we switch to
@@ -62,8 +74,8 @@ class GameClientRepository(ClientRepository):
 
     def sync_ready(self):
         """ Now we've got the TimeManager manifested, and we're in
-                sync with the server time.  Now we can enter the world.  Check
-                to see if we've received our doIdBase yet. """
+        sync with the server time.  Now we can enter the world.  Check
+        to see if we've received our doIdBase yet. """
 
         # This method checks whether we actually have a valid doID range
         # to create distributed objects yet.
@@ -89,13 +101,42 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
+        self.join()
 
+        print("Client Ready")
+        base.messenger.send("client-ready")
 
-class GameClient(ShowBase):
-    def __init__(self):
-        ShowBase.__init__(self)
-        self.cr = GameClientRepository()
+    def join(self):
+        """ Join a game/room/whatever """
+        self.accept(self.uniqueName('AIDGameObjectGenerated'), self.ai_d_game_object_generated)
 
+        # set our interest zones to let the client see all distributed objects
+        # in those zones
+        self.setInterestZones([1, 2])
 
-client = GameClient()
-client.run()
+        # Manifest an object on the server.  The object will have our "base" doId.
+        self.distributed_object = DGameObject(self)
+        self.createDistributedObject(distObj=self.distributed_object, zoneId=2)
+
+        base.messenger.send("client-joined")
+        print("Joined")
+
+    def ai_d_game_object_generated(self, do_id):
+        print("AIDGameObject was generated")
+        self.ai_d_game_object = self.doId2do[do_id]
+
+    def send_game_data(self):
+        if not self.distributed_object:
+            return
+
+        print("Send game data")
+
+        # send a message to the server
+        self.distributed_object.d_send_game_data()
+
+    def send_roundtrip_to_ai(self):
+        if not self.ai_d_game_object:
+            return
+
+        print("Initiate roundtrip message to AI Server")
+        self.ai_d_game_object.d_request_data_from_ai()
