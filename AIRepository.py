@@ -1,15 +1,30 @@
 from direct.distributed.ClientRepository import ClientRepository
+from direct.showbase.ShowBase import ShowBase
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-from AIDGameObjectAI import AIDGameObjectAI
+from panda3d.core import Vec3
+from panda3d.bullet import BulletWorld, BulletRigidBodyNode, BulletCapsuleShape
+from DGameManagerAI import DGameManagerAI
+from DPlayerAI import DPlayerAI
+
+
+GRAVITY = Vec3(0, 0, -9.81)
 
 
 class AIRepository(ClientRepository):
-    def __init__(self):
+    def __init__(self, base: ShowBase):
         """The AI Repository usually lives on a server and is responsible for
         server side logic that will handle game objects"""
 
-        self.dist_game_object: AIDGameObjectAI | None = None
+        self.base = base
+        self.update_task = None
+        self.game_mgr_ai: DGameManagerAI | None = None
 
+        # Create the physics world
+        self.world = BulletWorld()
+        # self.world.set_gravity(GRAVITY)
+        self.world_np = self.base.render.attach_new_node("Physics-World")
+
+        # Getting ready to establish a connection
         dc_file_names = ["direct.dc", "sample.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
@@ -23,7 +38,7 @@ class AIRepository(ClientRepository):
                      successCallback=self.connect_success,
                      failureCallback=self.connect_failure)
 
-    def lost_connection(self):
+    def lostConnection(self):
         """ This should be overridden by a derived class to handle an
                 unexpectedly lost connection to the gameserver. """
         # Handle the disconnection from the server.  This can be a reconnect,
@@ -59,11 +74,51 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
-        self.dist_game_object = self.createDistributedObject(className="AIDGameObjectAI", zoneId=2)
+        self.game_mgr_ai = self.createDistributedObject(className="DGameManagerAI", zoneId=2)
+
+        self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
 
-    def deallocate_channel(self, do_id):
+    def update(self, task):
+        """The main task that will handle game logic, in that order:
+            1. gathering player input
+            2. processing the input
+            3. advance the physics simulation"""
+        if not self.game_mgr_ai.player_list:
+            return task.cont
+
+        dt = self.base.clock.get_dt()
+        for player in self.game_mgr_ai.player_list:
+            pass
+        return task.cont
+
+    def add_player(self, player: DPlayerAI):
+        # Adding a collider
+        self.accept("capsule-params-ready", self.add_collider, [player])
+        player.d_request_capsule_params()
+
+        # Setting physical attributes
+        player.node().set_mass(1.0)
+        player.node().set_angular_factor(Vec3(0, 0, 1.0))
+
+        # Setting up CCD
+        player.node().set_ccd_motion_threshold(1e-07)
+        player.node().set_ccd_swept_sphere_radius(0.5)
+
+        # Attaching the player to the world
+        self.world.attach(player.node())
+        player.reparent_to(self.world_np)
+
+        print("Player {} added successfully!".format(player.doId))
+
+    def add_collider(self, player: DPlayerAI, radius, height, up):
+        capsule = BulletCapsuleShape(radius, height, up)
+        player.node().add_shape(capsule)
+
+    def deallocateChannel(self, do_id):
         """This method will be called whenever a client disconnects from the
         server.  The given doID is the ID of the client who left us."""
-        print("Client left us: ", do_id)
+        requester_id = self.getAvatarIdFromSender()
+        print("Requester left us:", requester_id)
+        print("Client left us:", do_id)

@@ -1,0 +1,58 @@
+from direct.distributed.DistributedSmoothNode import DistributedSmoothNode
+from panda3d.bullet import BulletRigidBodyNode, Z_up
+from panda3d.core import Vec2
+from Helpers import BulletRigidBodyNP
+
+
+class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
+    def __init__(self, cr):
+        DistributedSmoothNode.__init__(self, cr)
+        BulletRigidBodyNP.__init__(self, "Player")
+        self.model = base.loader.load_model("models/panda")
+        self.model.set_scale(0.2)
+        self.model.reparent_to(self)
+        self.skin_width = 0.05
+        # self.setCacheable(True)
+
+    def generate(self):
+        DistributedSmoothNode.generate(self)
+        self.activateSmoothing(True, False)
+        self.startSmooth()
+        self.start()
+
+    def announceGenerate(self):
+        DistributedSmoothNode.announceGenerate(self)
+        self.reparent_to(base.render)
+
+    def start(self):
+        self.startPosHprBroadcast()
+
+    def disable(self):
+        self.stopSmooth()
+        DistributedSmoothNode.disable(self)
+
+    def delete(self):
+        print("deleting player object", self.doId)
+        self.detach_node()
+        self.model = None
+        DistributedSmoothNode.delete(self)
+
+    def update(self, dt):
+        pass
+
+    def request_capsule_params(self):
+        """Sends the capsule collider parameters for the rigidbody on the server side."""
+        box = self.model.get_tight_bounds()
+        size = box[1] - box[0]
+        radius = size.get_y() * 0.5  # + self.skin_width
+        height = size.get_z() - 2 * radius
+
+        # Reposition the model
+        self.model.set_z(-0.5 * height - radius)
+
+        self.sendUpdate("capsule_params", [radius, height, Z_up])
+
+    def d_send_input(self, p_input: Vec2):
+        """ Converts player input to tuple and sends it to the AI server. """
+        p_input = (int(p_input.get_x()), int(p_input.get_y()))
+        self.sendUpdate("receive_input", [p_input])

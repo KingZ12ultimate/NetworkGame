@@ -1,6 +1,5 @@
 import math
-from panda3d.core import Point3, Vec3, Quat, NodePath
-from panda3d.bullet import BulletRigidBodyNode
+from panda3d.core import Point3, Vec3, Quat
 
 
 def lerp(a, b, t): return a * (1 - t) + b * t
@@ -51,8 +50,3 @@ def move_towards_angle(current, target, max_delta):
         return clamp_angle(current + max_delta)
     else:
         return clamp_angle(current - max_delta)
-
-
-class BulletRigidBodyNP(NodePath):
-    def __init__(self, name: str):
-        NodePath.__init__(self, BulletRigidBodyNode(name))

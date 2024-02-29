@@ -5,20 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIDGameObject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIDGameObjectAI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/AIRepository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/DGameObject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/GameClient.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/GameServer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/ServerRepository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedNetwork/sample.dc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DCherry.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DGameManager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DGameManagerAI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DPlayer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglePlayer/Camera.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglePlayer/Helpers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglePlayer/Input.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglePlayer/Models/floor.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglePlayer/Models/ground.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample.dc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/Direct client-server/GameClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedNetwork/ClientRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/Direct client-server/GameServer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameServerRepository.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/direct.dc" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedNetwork/direct.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseContainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/BaseContainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/AIDGameObject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/AIDGameObjectAI.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/DGameObject.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/GameClient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/ServerRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/direct.dc" beforeDir="false" afterPath="$PROJECT_DIR$/direct.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedNetwork/sample.dc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Player.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +49,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KingZ12ultimate&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="5346f99e-39bf-4c74-8eaf-b43586860fc9" />
+        <option name="url" value="https://github.com/KingZ12ultimate/NetworkGame.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -55,6 +84,7 @@
     &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
     &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
     &quot;Python.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
     &quot;Python.Game.executor&quot;: &quot;Run&quot;,
     &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
     &quot;Python.Player.executor&quot;: &quot;Run&quot;,
@@ -66,22 +96,25 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/Desktop/SimpleThirdPersonCamera-main&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/PycharmProjects/NetworkGame/SinglePlayer&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Distributed Network" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Direct client-server" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork\repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Game">
+  <component name="RunManager" selected="Python.Game (1)">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="NetworkGame" />
       <option name="ENV_FILES" value="" />
@@ -101,6 +134,28 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="true" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Game (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NetworkGame" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SinglePlayer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SinglePlayer/Game.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
@@ -152,10 +207,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Client" />
       <item itemvalue="Python.Game" />
       <item itemvalue="Python.Server" />
-      <item itemvalue="Python.Client" />
+      <item itemvalue="Python.Game (1)" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.Game (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -197,8 +258,27 @@
       <option name="project" value="LOCAL‎" />
       <updated>1707466042456</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="changes">
+      <option name="closed" value="true" />
+      <created>1707851043714</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1707851043714</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

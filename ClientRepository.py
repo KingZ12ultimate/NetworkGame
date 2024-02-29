@@ -1,13 +1,13 @@
 # imports for the engine
-from direct.showbase.ShowBase import ShowBase
+from direct.showbase.MessengerGlobal import messenger
+from direct.task.Task import Task
 
 from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-from DGameObject import DGameObject
-from AIDGameObject import AIDGameObject
-
-# initialize the engine
-base = ShowBase()
+from DPlayer import DPlayer
+from DCherry import DCherry
+from DGameManager import DGameManager
+from Input import global_input
 
 
 class GameClientRepository(ClientRepository):
@@ -15,10 +15,16 @@ class GameClientRepository(ClientRepository):
         dc_file_names = ["direct.dc", "sample.dc"]
 
         # a distributed object for our game
-        self.distributed_object: DGameObject | None = None
-        self.ai_d_game_object: AIDGameObject | None = None
+        self.player: DPlayer | None = None
+        self.cherry: DCherry | None = None
+        self.game_mgr: DGameManager | None = None
+
+        self.local_player_id: int | None = None
+        self.game_mgr_id: int | None = None
+        self.cherry_id: int | None = None
 
         ClientRepository.__init__(self, dcFileNames=dc_file_names, threadedNet=True)
+        self.doNotDeallocateChannel = False
 
         # Set the same port as configured on the server to be able to connect
         # to it
@@ -39,7 +45,7 @@ class GameClientRepository(ClientRepository):
                      successCallback=self.connect_success,
                      failureCallback=self.connect_failure)
 
-    def lost_connection(self):
+    def lostConnection(self):
         """ This should be overridden by a derived class to handle an
                 unexpectedly lost connection to the gameserver. """
         # Handle the disconnection from the server.  This can be a reconnect,
@@ -101,42 +107,40 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.join()
+        self.accept(self.uniqueName("GameManagerGenerated"), self.game_mgr_generated)
+        self.accept(self.uniqueName("PlayerObjectGenerated"), self.player_object_generated)
+
+        self.setInterestZones([1, 2])
+        self.cherry = self.createDistributedObject(className="DCherry", zoneId=2)
 
         print("Client Ready")
-        base.messenger.send("client-ready")
+        messenger.send("client-ready")
 
-    def join(self):
-        """ Join a game/room/whatever """
-        self.accept(self.uniqueName('AIDGameObjectGenerated'), self.ai_d_game_object_generated)
+    def game_mgr_generated(self, do_id):
+        print("Game manager generated")
+        self.game_mgr_id = do_id
+        self.game_mgr = self.doId2do[do_id]
 
-        # set our interest zones to let the client see all distributed objects
-        # in those zones
-        self.setInterestZones([1, 2])
+    def player_object_generated(self, do_id):
+        print("Player object generated: " + str(do_id))
+        self.ignore(self.uniqueName("PlayerObjectGenerated"))
+        self.local_player_id = do_id
+        self.player = self.doId2do[do_id]
 
-        # Manifest an object on the server.  The object will have our "base" doId.
-        self.distributed_object = DGameObject(self)
-        self.createDistributedObject(distObj=self.distributed_object, zoneId=2)
-
-        base.messenger.send("client-joined")
-        print("Joined")
-
-    def ai_d_game_object_generated(self, do_id):
-        print("AIDGameObject was generated")
-        self.ai_d_game_object = self.doId2do[do_id]
-
-    def send_game_data(self):
-        if not self.distributed_object:
+    def request_join(self):
+        if not self.game_mgr:
             return
 
-        print("Send game data")
+        self.game_mgr.d_request_join()
 
-        # send a message to the server
-        self.distributed_object.d_send_game_data()
+    def request_leave(self):
+        self.game_mgr.d_request_leave()
 
-    def send_roundtrip_to_ai(self):
-        if not self.ai_d_game_object:
+    def send_input(self):
+        if not self.player:
             return
 
-        print("Initiate roundtrip message to AI Server")
-        self.ai_d_game_object.d_request_data_from_ai()
+        print("Sending input to AI server")
+        p_input = global_input.move_input
+        self.player.d_send_input(p_input)
+        return Task.cont

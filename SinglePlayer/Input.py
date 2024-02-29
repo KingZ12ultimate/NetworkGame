@@ -52,6 +52,7 @@ class Input(DirectObject.DirectObject):
             self.__move_input.add_x(-1.0)
         if self.__d_pad_map["d"]:
             self.__move_input.add_x(1.0)
+        self.__move_input.normalize()
         return self.__move_input
 
     @property
