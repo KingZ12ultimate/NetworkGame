@@ -25,7 +25,7 @@ class AIRepository(ClientRepository):
         self.world_np = self.base.render.attach_new_node("Physics-World")
 
         # Getting ready to establish a connection
-        dc_file_names = ["direct.dc", "sample.dc"]
+        dc_file_names = ["direct.dc", "GameManager.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
         tcp_port = ConfigVariableInt("server-port", 4400).get_value()

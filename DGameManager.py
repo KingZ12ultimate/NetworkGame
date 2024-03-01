@@ -18,9 +18,6 @@ class DGameManager(DistributedObject):
         self.sendUpdate("request_leave", [self.cr.local_player_id])
         self.cr.sendDeleteMsg(self.cr.local_player_id)
 
-        # player = self.cr.doId2do[self.cr.local_player_id]
-        # player.delete()
-
     def join_success(self, player_id):
         print("Joined successfully!")
         messenger.send(self.cr.uniqueName("PlayerObjectGenerated"), [player_id])

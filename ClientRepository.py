@@ -12,7 +12,7 @@ from Input import global_input
 
 class GameClientRepository(ClientRepository):
     def __init__(self):
-        dc_file_names = ["direct.dc", "sample.dc"]
+        dc_file_names = ["direct.dc", "GameManager.dc"]
 
         # a distributed object for our game
         self.player: DPlayer | None = None
@@ -140,7 +140,7 @@ class GameClientRepository(ClientRepository):
         if not self.player:
             return
 
-        print("Sending input to AI server")
+        # print("Sending input to AI server")
         p_input = global_input.move_input
         self.player.d_send_input(p_input)
         return Task.cont
