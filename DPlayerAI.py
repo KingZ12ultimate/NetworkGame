@@ -27,10 +27,6 @@ class DPlayerAI(DistributedSmoothNodeAI, BulletRigidBodyNP):
         self.gravity_multiplier = 5.0
         self.set_pos(random.uniform(-10.0, 10.0), random.uniform(-10.0, 10.0), 0)
 
-    def delete(self):
-        print("deleting player object AI", self.doId)
-        DistributedSmoothNodeAI.delete(self)
-
     def update(self, dt):
         """Adjusts the player's velocity according to the received input."""
         self.node().set_active(True)  # prevents unwanted sleeping of the rigid body
@@ -65,3 +61,7 @@ class DPlayerAI(DistributedSmoothNodeAI, BulletRigidBodyNP):
     def receive_input(self, p_input):
         move_input = Vec2(p_input[0], p_input[1])
         jump_pressed = p_input[2]
+
+    def delete(self):
+        print("deleting player object AI", self.doId)
+        DistributedSmoothNodeAI.delete(self)

@@ -1,14 +1,14 @@
 # imports for the engine
 from direct.showbase.ShowBase import ShowBase
 
-# imports for physics
-from panda3d.bullet import BulletWorld, BulletRigidBodyNode
-
 from ClientRepository import GameClientRepository
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
-from panda3d.core import TextNode, WindowProperties, PandaNode
+from panda3d.core import TextNode, WindowProperties, Vec3
 from Camera import Camera
+
+
+GRAVITY = Vec3(0, 0, -9.81)
 
 
 class GameClient(ShowBase):
@@ -32,7 +32,7 @@ class GameClient(ShowBase):
         inst1 = self.add_instruction(0.06, "esc: Close the client")
         inst2 = self.add_instruction(0.12, "See console output")
 
-        self.cr = GameClientRepository()
+        self.cr = GameClientRepository(self)
         self.accept_once("t", self.request_join)
         self.accept_once("player-created", self.setup_camera)
 

@@ -1,9 +1,13 @@
 # imports for the engine
+from direct.showbase.ShowBase import ShowBase
 from direct.showbase.MessengerGlobal import messenger
-from direct.task.Task import Task
+
+# imports for physics
+from panda3d.bullet import BulletWorld, BulletRigidBodyNode
 
 from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
+from panda3d.core import Vec2
 from DPlayer import DPlayer
 from DCherry import DCherry
 from DGameManager import DGameManager
@@ -11,17 +15,27 @@ from Input import global_input
 
 
 class GameClientRepository(ClientRepository):
-    def __init__(self):
+    def __init__(self, base: ShowBase):
         dc_file_names = ["direct.dc", "GameManager.dc"]
+        self.base = base
 
-        # a distributed object for our game
+        # distributed objects for our game
         self.player: DPlayer | None = None
         self.cherry: DCherry | None = None
         self.game_mgr: DGameManager | None = None
+        self.player_list: list[DPlayer] = []
 
         self.local_player_id: int | None = None
         self.game_mgr_id: int | None = None
         self.cherry_id: int | None = None
+
+        self.move_input = Vec2.zero()
+        self.jump_pressed = False
+
+        # Create the physics world
+        self.world = BulletWorld()
+        # self.world.set_gravity(GRAVITY)
+        self.world_np = self.base.render.attach_new_node("Physics-World")
 
         ClientRepository.__init__(self, dcFileNames=dc_file_names, threadedNet=True)
         self.doNotDeallocateChannel = False
@@ -116,16 +130,41 @@ class GameClientRepository(ClientRepository):
         print("Client Ready")
         messenger.send("client-ready")
 
+    def update(self, dt):
+        pass
+
     def game_mgr_generated(self, do_id):
         print("Game manager generated")
         self.game_mgr_id = do_id
         self.game_mgr = self.doId2do[do_id]
 
-    def player_object_generated(self, do_id):
+    def player_object_generated(self, do_id, owner):
         print("Player object generated: " + str(do_id))
-        self.ignore(self.uniqueName("PlayerObjectGenerated"))
+
+        # self.ignore(self.uniqueName("PlayerObjectGenerated"))
+        if not owner:
+            self.player_list.append(self.doId2do[do_id])
+            return
+
         self.local_player_id = do_id
         self.player = self.doId2do[do_id]
+
+    def add_player(self, player: DPlayerAI):
+        # Adding a collider
+        self.accept("capsule-params-ready", self.add_collider, [player])
+        player.d_request_capsule_params()
+
+        # Setting physical attributes
+        player.node().set_mass(1.0)
+        player.node().set_angular_factor(Vec3(0, 0, 1.0))
+
+        # Setting up CCD
+        player.node().set_ccd_motion_threshold(1e-07)
+        player.node().set_ccd_swept_sphere_radius(0.5)
+
+        # Attaching the player to the world
+        self.world.attach(player.node())
+        player.reparent_to(self.world_np)
 
     def request_join(self):
         if not self.game_mgr:

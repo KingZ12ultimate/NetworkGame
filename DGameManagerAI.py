@@ -19,7 +19,7 @@ class DGameManagerAI(DistributedObjectAI):
         new_player = self.air.createDistributedObject(className="DPlayerAI", zoneId=2)
         self.player_list.append(new_player)
         self.air.add_player(new_player)
-        self.sendUpdateToAvatarId(requester_id, "join_success", [new_player.doId])
+        self.sendUpdateToAvatarId(requester_id, "join_success", [new_player.doId, True])
 
     def request_leave(self, player_id):
         self.air.world.remove(self.air.doId2do[player_id].node())

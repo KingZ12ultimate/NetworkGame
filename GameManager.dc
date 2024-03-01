@@ -12,7 +12,7 @@ struct PlayerInput {
 dclass DGameManager: DistributedObject {
     request_join() p2p;
     request_leave(uint8 player_id) p2p;
-    join_success(uint8 player_id) p2p;
+    join_success(uint8 player_id, bool owner) broadcast;
 };
 
 dclass DPlayer: DistributedSmoothNode {

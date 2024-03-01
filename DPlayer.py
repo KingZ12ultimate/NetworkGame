@@ -1,6 +1,5 @@
 from direct.distributed.DistributedSmoothNode import DistributedSmoothNode
-from panda3d.bullet import BulletRigidBodyNode, Z_up
-from panda3d.core import Vec2
+from panda3d.bullet import BulletCapsuleShape, Z_up
 from Helpers import BulletRigidBodyNP
 from Input import global_input
 
@@ -40,6 +39,17 @@ class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
 
     def update(self, dt):
         pass
+
+    def add_collider(self):
+        box = self.model.get_tight_bounds()
+        size = box[1] - box[0]
+        radius = size.get_y() * 0.5 + self.skin_width
+        height = size.get_z() - 2 * radius
+
+        # Reposition the model
+        self.model.set_z(-0.5 * height - radius)
+
+        self.node().add_shape(BulletCapsuleShape(radius, height, Z_up))
 
     def request_capsule_params(self):
         """Sends the capsule collider parameters for the rigid body on the server side."""
