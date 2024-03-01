@@ -135,12 +135,3 @@ class GameClientRepository(ClientRepository):
 
     def request_leave(self):
         self.game_mgr.d_request_leave()
-
-    def send_input(self):
-        if not self.player:
-            return
-
-        # print("Sending input to AI server")
-        p_input = global_input.move_input
-        self.player.d_send_input(p_input)
-        return Task.cont

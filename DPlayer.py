@@ -2,6 +2,7 @@ from direct.distributed.DistributedSmoothNode import DistributedSmoothNode
 from panda3d.bullet import BulletRigidBodyNode, Z_up
 from panda3d.core import Vec2
 from Helpers import BulletRigidBodyNP
+from Input import global_input
 
 
 class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
@@ -41,7 +42,7 @@ class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
         pass
 
     def request_capsule_params(self):
-        """Sends the capsule collider parameters for the rigidbody on the server side."""
+        """Sends the capsule collider parameters for the rigid body on the server side."""
         box = self.model.get_tight_bounds()
         size = box[1] - box[0]
         radius = size.get_y() * 0.5  # + self.skin_width
@@ -52,7 +53,10 @@ class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
 
         self.sendUpdate("capsule_params", [radius, height, Z_up])
 
-    def d_send_input(self, p_input: Vec2):
-        """ Converts player input to tuple and sends it to the AI server. """
-        p_input = (int(p_input.get_x()), int(p_input.get_y()))
+    def request_input(self):
+        """Converts player input to tuple and sends it to the AI server."""
+        move_input = global_input.move_input
+        p_input = (int(move_input.get_x()),
+                   int(move_input.get_y()),
+                   global_input.jump_pressed)
         self.sendUpdate("receive_input", [p_input])

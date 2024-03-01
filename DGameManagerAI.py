@@ -22,7 +22,7 @@ class DGameManagerAI(DistributedObjectAI):
         self.sendUpdateToAvatarId(requester_id, "join_success", [new_player.doId])
 
     def request_leave(self, player_id):
-        self.air.world.remove(self.air.doId2do[player_id])
+        self.air.world.remove(self.air.doId2do[player_id].node())
         self.air.sendDeleteMsg(player_id)
 
         for p in self.player_list:

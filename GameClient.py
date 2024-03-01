@@ -58,7 +58,6 @@ class GameClient(ShowBase):
         """The main task that will handle the client-side game logic"""
         dt = self.clock.get_dt()
         self.camera_mgr.update(dt)
-        self.cr
         return Task.cont
 
     # Function to put instructions on the screen.

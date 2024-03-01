@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DGameManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/DGameManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DGameManagerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ServerRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.dc" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager.dc" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager.dc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +104,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11 (NetworkGame)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -147,7 +148,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11 (NetworkGame)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -170,7 +170,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.11 (NetworkGame)" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -199,7 +198,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
       </set>
     </attachedChunks>
   </component>

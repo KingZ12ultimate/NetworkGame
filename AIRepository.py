@@ -90,7 +90,10 @@ class AIRepository(ClientRepository):
 
         dt = self.base.clock.get_dt()
         for player in self.game_mgr_ai.player_list:
-            pass
+            player.d_request_input()
+        for player in self.game_mgr_ai.player_list:
+            player.update(dt)
+        self.world.do_physics(dt)
         return task.cont
 
     def add_player(self, player: DPlayerAI):
