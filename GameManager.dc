@@ -8,6 +8,6 @@ struct PlayerInput {
     bool jump;
 };
 
-dclass DPlayer: DistributedSmoothNode {};
+dclass DPlayer: DistributedNode {};
 
 dclass DCherry: DistributedNode {};

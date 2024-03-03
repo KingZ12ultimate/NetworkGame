@@ -1,54 +1,29 @@
-from direct.distributed.DistributedSmoothNode import DistributedSmoothNode
+from direct.distributed.DistributedNode import DistributedNode
 from direct.showbase.MessengerGlobal import messenger
 from panda3d.bullet import BulletCapsuleShape, Z_up
 from Helpers import BulletRigidBodyNP
 from Input import global_input
 
 
-class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
+class DPlayer(DistributedNode, BulletRigidBodyNP):
     def __init__(self, cr):
-        DistributedSmoothNode.__init__(self, cr)
+        DistributedNode.__init__(self, cr)
         BulletRigidBodyNP.__init__(self, "Player")
-        self.model = base.loader.load_model("models/panda")
-        self.model.set_scale(0.2)
-        self.model.reparent_to(self)
-        self.skin_width = 0.05
         # self.setCacheable(True)
-
-    def generate(self):
-        DistributedSmoothNode.generate(self)
-        self.activateSmoothing(True, False)
-        self.startSmooth()
-        self.startPosHprBroadcast()
 
     def announceGenerate(self):
         messenger.send(self.cr.uniqueName("PlayerGenerated"), [self.doId])
-        DistributedSmoothNode.announceGenerate(self)
+        DistributedNode.announceGenerate(self)
         self.reparent_to(base.render)
-
-    def disable(self):
-        self.stopSmooth()
-        DistributedSmoothNode.disable(self)
 
     def delete(self):
         print("deleting player object", self.doId)
         self.detach_node()
         self.model = None
-        DistributedSmoothNode.delete(self)
+        DistributedNode.delete(self)
 
     def update(self, dt):
         pass
-
-    def add_collider(self):
-        box = self.model.get_tight_bounds()
-        size = box[1] - box[0]
-        radius = size.get_y() * 0.5 + self.skin_width
-        height = size.get_z() - 2 * radius
-
-        # Reposition the model
-        self.model.set_z(-0.5 * height - radius)
-
-        self.node().add_shape(BulletCapsuleShape(radius, height, Z_up))
 
     def request_input(self):
         """Converts player input to tuple and sends it to the AI server."""

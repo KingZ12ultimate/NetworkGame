@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager.dc" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,31 +56,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.01_Basics.executor": "Run",
-    "Python.02_Shapes.executor": "Run",
-    "Python.03_Heightfield.executor": "Run",
-    "Python.17_Character.executor": "Run",
-    "Python.25_SoftbodyTetra.executor": "Run",
-    "Python.Client.executor": "Run",
-    "Python.Game (1).executor": "Run",
-    "Python.Game.executor": "Run",
-    "Python.Helpers.executor": "Run",
-    "Python.Player.executor": "Run",
-    "Python.Server.executor": "Run",
-    "Python.SimpleThirdPersonCameraTester.executor": "Run",
-    "Python.Testi.executor": "Run",
-    "Python.character.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models",
-    "settings.editor.selected.configurable": "editor.preferences.completion"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
+    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\AMIT.DESKTOP-O006H9P\PycharmProjects\NetworkGame\DirectClientServer\Models" />
@@ -181,9 +187,9 @@
     </configuration>
     <list>
       <item itemvalue="Python.Client" />
+      <item itemvalue="Python.Game (1)" />
       <item itemvalue="Python.Game" />
       <item itemvalue="Python.Server" />
-      <item itemvalue="Python.Game (1)" />
     </list>
     <recent_temporary>
       <list>

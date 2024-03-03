@@ -3,7 +3,7 @@ from direct.showbase.ShowBase import ShowBase
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec3
 from panda3d.bullet import BulletWorld
-from DPlayer import DPlayer
+from DPlayerAI import DPlayerAI
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -73,9 +73,7 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
-        self.player = self.createDistributedObject(className='DPlayer', zoneId=2)
-        self.add_player(self.player)
-        print(self.player.cr.doIdBase)
+        self.player = self.createDistributedObject(className='DPlayerAI', zoneId=2)
         self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
@@ -87,7 +85,7 @@ class AIRepository(ClientRepository):
             3. advance the physics simulation"""
         return task.cont
 
-    def add_player(self, player: DPlayer):
+    def add_player(self, player: DPlayerAI):
         # Adding a collider
         player.add_collider()
 

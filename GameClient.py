@@ -25,7 +25,7 @@ class GameClient(ShowBase):
         self.disable_mouse()
         self.render.set_shader_auto()
 
-        self.exitFunc = self.request_leave
+        self.exitFunc = self.leave
         self.accept("client-ready", self.set_connected_message)
 
         self.title = self.add_title("Panda3D: Tutorial - Distributed Network (NOT CONNECTED)")
@@ -33,30 +33,24 @@ class GameClient(ShowBase):
         inst2 = self.add_instruction(0.12, "See console output")
 
         self.cr = GameClientRepository(self)
-        self.accept_once("t", self.request_join)
-        self.accept_once("player-created", self.setup_camera)
+        self.accept_once("t", self.join)
 
-    def request_join(self):
-        self.cr.request_join()
-        self.accept_once("join-success", self.join_success)
-
-    def join_success(self):
-        self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
-                              + str(self.cr.player.doId))
-        self.messenger.send("player-created")
-
-    def request_leave(self):
-        self.task_mgr.remove("update-task")
-        self.camera_mgr = None
-        self.cr.request_leave()
-
-    def setup_camera(self):
+    def join(self):
+        self.cr.add_player()
         self.camera_mgr = Camera(self.camera, self.cr.player, 40, 10, 0.75)
         self.task_mgr.add(self.update, "update-task")
+        self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
+                              + str(self.cr.player.doId))
+
+    def leave(self):
+        self.task_mgr.remove("update-task")
+        self.camera_mgr = None
+        self.cr.remove_player()
 
     def update(self, task):
         """The main task that will handle the client-side game logic"""
         dt = self.clock.get_dt()
+        self.cr.update(dt)
         self.camera_mgr.update(dt)
         return Task.cont
 
