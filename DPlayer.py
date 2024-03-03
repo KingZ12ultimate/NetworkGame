@@ -1,4 +1,5 @@
 from direct.distributed.DistributedSmoothNode import DistributedSmoothNode
+from direct.showbase.MessengerGlobal import messenger
 from panda3d.bullet import BulletCapsuleShape, Z_up
 from Helpers import BulletRigidBodyNP
 from Input import global_input
@@ -18,14 +19,12 @@ class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
         DistributedSmoothNode.generate(self)
         self.activateSmoothing(True, False)
         self.startSmooth()
-        self.start()
+        self.startPosHprBroadcast()
 
     def announceGenerate(self):
+        messenger.send(self.cr.uniqueName("PlayerGenerated"), [self.doId])
         DistributedSmoothNode.announceGenerate(self)
         self.reparent_to(base.render)
-
-    def start(self):
-        self.startPosHprBroadcast()
 
     def disable(self):
         self.stopSmooth()
@@ -50,18 +49,6 @@ class DPlayer(DistributedSmoothNode, BulletRigidBodyNP):
         self.model.set_z(-0.5 * height - radius)
 
         self.node().add_shape(BulletCapsuleShape(radius, height, Z_up))
-
-    def request_capsule_params(self):
-        """Sends the capsule collider parameters for the rigid body on the server side."""
-        box = self.model.get_tight_bounds()
-        size = box[1] - box[0]
-        radius = size.get_y() * 0.5  # + self.skin_width
-        height = size.get_z() - 2 * radius
-
-        # Reposition the model
-        self.model.set_z(-0.5 * height - radius)
-
-        self.sendUpdate("capsule_params", [radius, height, Z_up])
 
     def request_input(self):
         """Converts player input to tuple and sends it to the AI server."""

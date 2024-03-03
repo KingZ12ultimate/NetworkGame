@@ -10,7 +10,6 @@ from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec2
 from DPlayer import DPlayer
 from DCherry import DCherry
-from DGameManager import DGameManager
 from Input import global_input
 
 
@@ -21,8 +20,6 @@ class GameClientRepository(ClientRepository):
 
         # distributed objects for our game
         self.player: DPlayer | None = None
-        self.cherry: DCherry | None = None
-        self.game_mgr: DGameManager | None = None
         self.player_list: list[DPlayer] = []
 
         self.local_player_id: int | None = None
@@ -121,11 +118,9 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.accept(self.uniqueName("GameManagerGenerated"), self.game_mgr_generated)
-        self.accept(self.uniqueName("PlayerObjectGenerated"), self.player_object_generated)
+        self.accept(self.uniqueName("PlayerGenerated"), self.player_object_generated)
 
         self.setInterestZones([1, 2])
-        self.cherry = self.createDistributedObject(className="DCherry", zoneId=2)
 
         print("Client Ready")
         messenger.send("client-ready")
@@ -133,44 +128,14 @@ class GameClientRepository(ClientRepository):
     def update(self, dt):
         pass
 
-    def game_mgr_generated(self, do_id):
-        print("Game manager generated")
-        self.game_mgr_id = do_id
-        self.game_mgr = self.doId2do[do_id]
-
-    def player_object_generated(self, do_id, owner):
+    def player_object_generated(self, do_id):
         print("Player object generated: " + str(do_id))
-
-        # self.ignore(self.uniqueName("PlayerObjectGenerated"))
-        if not owner:
-            self.player_list.append(self.doId2do[do_id])
-            return
 
         self.local_player_id = do_id
         self.player = self.doId2do[do_id]
 
-    def add_player(self, player: DPlayerAI):
-        # Adding a collider
-        self.accept("capsule-params-ready", self.add_collider, [player])
-        player.d_request_capsule_params()
-
-        # Setting physical attributes
-        player.node().set_mass(1.0)
-        player.node().set_angular_factor(Vec3(0, 0, 1.0))
-
-        # Setting up CCD
-        player.node().set_ccd_motion_threshold(1e-07)
-        player.node().set_ccd_swept_sphere_radius(0.5)
-
-        # Attaching the player to the world
-        self.world.attach(player.node())
-        player.reparent_to(self.world_np)
-
     def request_join(self):
-        if not self.game_mgr:
-            return
-
-        self.game_mgr.d_request_join()
+        pass
 
     def request_leave(self):
-        self.game_mgr.d_request_leave()
+        pass

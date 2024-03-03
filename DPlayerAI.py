@@ -49,19 +49,6 @@ class DPlayerAI(DistributedSmoothNodeAI, BulletRigidBodyNP):
         self.velocity.set_z(self.node().get_linear_velocity().get_z())
         self.node().set_linear_velocity(self.velocity)
 
-    def d_request_capsule_params(self):
-        self.sendUpdate("request_capsule_params")
-
-    def d_request_input(self):
-        self.sendUpdate("request_input")
-
-    def capsule_params(self, radius, height, up):
-        messenger.send("capsule-params-ready", [radius, height, up])
-
-    def receive_input(self, p_input):
-        move_input = Vec2(p_input[0], p_input[1])
-        jump_pressed = p_input[2]
-
     def delete(self):
         print("deleting player object AI", self.doId)
         DistributedSmoothNodeAI.delete(self)

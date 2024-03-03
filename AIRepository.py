@@ -2,9 +2,8 @@ from direct.distributed.ClientRepository import ClientRepository
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec3
-from panda3d.bullet import BulletWorld, BulletRigidBodyNode, BulletCapsuleShape
-from DGameManagerAI import DGameManagerAI
-from DPlayerAI import DPlayerAI
+from panda3d.bullet import BulletWorld
+from DPlayer import DPlayer
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -17,7 +16,7 @@ class AIRepository(ClientRepository):
 
         self.base = base
         self.update_task = None
-        self.game_mgr_ai: DGameManagerAI | None = None
+        self.player = None
 
         # Create the physics world
         self.world = BulletWorld()
@@ -74,8 +73,9 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
-        self.game_mgr_ai = self.createDistributedObject(className="DGameManagerAI", zoneId=2)
-
+        self.player = self.createDistributedObject(className='DPlayer', zoneId=2)
+        self.add_player(self.player)
+        print(self.player)
         self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
@@ -85,21 +85,11 @@ class AIRepository(ClientRepository):
             1. gathering player input
             2. processing the input
             3. advance the physics simulation"""
-        if not self.game_mgr_ai.player_list:
-            return task.cont
-
-        dt = self.base.clock.get_dt()
-        for player in self.game_mgr_ai.player_list:
-            player.d_request_input()
-        for player in self.game_mgr_ai.player_list:
-            player.update(dt)
-        self.world.do_physics(dt)
         return task.cont
 
-    def add_player(self, player: DPlayerAI):
+    def add_player(self, player: DPlayer):
         # Adding a collider
-        self.accept("capsule-params-ready", self.add_collider, [player])
-        player.d_request_capsule_params()
+        player.add_collider()
 
         # Setting physical attributes
         player.node().set_mass(1.0)
@@ -114,10 +104,6 @@ class AIRepository(ClientRepository):
         player.reparent_to(self.world_np)
 
         print("Player {} added successfully!".format(player.doId))
-
-    def add_collider(self, player: DPlayerAI, radius, height, up):
-        capsule = BulletCapsuleShape(radius, height, up)
-        player.node().add_shape(capsule)
 
     def deallocateChannel(self, do_id):
         """This method will be called whenever a client disconnects from the
