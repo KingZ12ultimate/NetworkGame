@@ -23,7 +23,7 @@ class Client(ShowBase):
         if self.my_connection:
             self.c_reader.add_connection(self.my_connection)
 
-        self.camera.set_y(-10)
+        self.camera.set_pos(0, -20, 5)
 
         # Create the physics world
         self.world = BulletWorld()
@@ -32,8 +32,8 @@ class Client(ShowBase):
 
         self.player = CPlayer(self.my_connection, self.c_reader, self.c_writer)
         self.player.reparent_to(self.world_np)
+        self.camera.look_at(self.player)
         self.world.attach(self.player.node())
-        self.loader.load_model("Models/panda").reparent_to(self.render)
         # self.task_mgr.add(self.update, "update")
 
     def update(self, task):
