@@ -4,6 +4,7 @@ from direct.distributed.PyDatagramIterator import PyDatagramIterator
 from direct.task.Task import Task
 from direct.showbase.ShowBase import ShowBase
 from ConnectionConstants import ConnectionConstants
+from SPlayer import SPlayer
 
 
 port_address = 9099
@@ -19,6 +20,7 @@ class Server(ShowBase):
         self.c_writer = ConnectionWriter(self.c_manager, 0)
 
         self.active_connections = []  # We'll want to keep track of these later
+        self.player_list = []
 
         back_log = 1000
         tcp_socket = self.c_manager.open_TCP_server_rendezvous(port_address, back_log)
@@ -47,8 +49,13 @@ class Server(ShowBase):
                 msg_id = iterator.get_uint8()
                 if msg_id == ConnectionConstants.CREATE_OBJECT:
                     class_name = "S" + iterator.get_string()
-
+                    self.player_list.append(self.create_object(class_name, datagram.get_connection()))
+                    print("Added player")
         return Task.cont
+
+    def create_object(self, class_name, connection):
+        dclass = globals()[class_name]
+        return dclass(connection, self.c_reader, self.c_writer)
 
 
 server = Server()

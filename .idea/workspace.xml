@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/DirectClientServer/BulletRigidBodyNP.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirectClientServer/ConnectionConstants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirectClientServer/Models/panda.egg.pz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Direct client-server/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Direct client-server/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,12 +74,13 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/roee/PycharmProjects/NetworkGame/SinglePlayer",
+    "last_opened_file_path": "C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models",
     "settings.editor.selected.configurable": "editor.preferences.completion"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\AMIT.DESKTOP-O006H9P\PycharmProjects\NetworkGame\DirectClientServer\Models" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
@@ -275,7 +274,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709452977723</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="changes">
+      <option name="closed" value="true" />
+      <created>1709459633272</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709459633272</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -16,6 +16,10 @@ class CPlayer(BulletRigidBodyNP):
         self.c_reader = c_reader
         self.c_writer = c_writer
 
+        self.model = base.loader.load_model("Models/panda")
+        # self.model.set_scale(0.2)
+        self.model.reparent_to(self)
+
         # Announce generate
         generate_datagram = PyDatagram()
         generate_datagram.add_uint8(ConnectionConstants.CREATE_OBJECT)
