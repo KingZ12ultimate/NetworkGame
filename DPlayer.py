@@ -12,14 +12,13 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         # self.setCacheable(True)
 
     def announceGenerate(self):
-        messenger.send(self.cr.uniqueName("PlayerGenerated"), [self.doId])
+        messenger.send(self.cr.uniqueName("PlayerObjectGenerated"), [self.doId])
         DistributedNode.announceGenerate(self)
         self.reparent_to(base.render)
 
     def delete(self):
         print("deleting player object", self.doId)
         self.detach_node()
-        self.model = None
         DistributedNode.delete(self)
 
     def update(self, dt):

@@ -14,7 +14,7 @@ class GameServer(ShowBase):
         self.sr = GameServerRepository()
 
         # The AI Repository to manage server side (AI) clients
-        self.air = AIRepository()
+        self.air = AIRepository(self)
         simbase.air = self.air
 
 

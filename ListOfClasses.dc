@@ -1,4 +1,5 @@
-import DPlayer
+import DGameManager/AI
+import DPlayer/AI
 import DCherry
 
 
@@ -6,6 +7,11 @@ struct PlayerInput {
     int8 move_x;
     int8 move_y;
     bool jump;
+};
+
+dclass DGameManager: DistributedObject {
+    request_join() p2p;
+    request_leave(uint8 player_id) p2p;
 };
 
 dclass DPlayer: DistributedNode {};

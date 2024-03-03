@@ -16,7 +16,7 @@ class AIRepository(ClientRepository):
 
         self.base = base
         self.update_task = None
-        self.player = None
+        self.players = []
 
         # Create the physics world
         self.world = BulletWorld()
@@ -24,7 +24,7 @@ class AIRepository(ClientRepository):
         self.world_np = self.base.render.attach_new_node("Physics-World")
 
         # Getting ready to establish a connection
-        dc_file_names = ["direct.dc", "GameManager.dc"]
+        dc_file_names = ["direct.dc", "ListOfClasses.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
         tcp_port = ConfigVariableInt("server-port", 4400).get_value()
@@ -73,7 +73,6 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
-        self.player = self.createDistributedObject(className='DPlayerAI', zoneId=2)
         self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
@@ -101,7 +100,17 @@ class AIRepository(ClientRepository):
         self.world.attach(player.node())
         player.reparent_to(self.world_np)
 
+        self.players.append(player)
+
         print("Player {} added successfully!".format(player.doId))
+
+    def remove_player(self, player: DPlayerAI):
+        # Remove the player from the player list if it appears there.
+        for p in self.players:
+            if p == player:
+                self.players.remove(p)
+
+        self.world.remove(player.node())
 
     def deallocateChannel(self, do_id):
         """This method will be called whenever a client disconnects from the

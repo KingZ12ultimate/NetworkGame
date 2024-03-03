@@ -5,27 +5,23 @@ from direct.showbase.MessengerGlobal import messenger
 from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec2
+from DGameManager import DGameManager
 from DPlayer import DPlayer
-from direct.distributed.DistributedObjectGlobalUD import DistributedObjectGlobalUD
 
 
 class GameClientRepository(ClientRepository):
     def __init__(self, base: ShowBase):
-        dc_file_names = ["direct.dc", "GameManager.dc"]
+        dc_file_names = ["direct.dc", "ListOfClasses.dc"]
         self.base = base
 
         # distributed objects for our game
+        self.game_mgr: DGameManager | None = None
         self.player: DPlayer | None = None
-        self.player_list: list[DPlayer] = []
-
-        self.local_player_id: int | None = None
-        self.cherry_id: int | None = None
 
         self.move_input = Vec2.zero()
         self.jump_pressed = False
 
         ClientRepository.__init__(self, dcFileNames=dc_file_names, threadedNet=True)
-        self.doNotDeallocateChannel = False
 
         # Set the same port as configured on the server to be able to connect
         # to it
@@ -108,7 +104,7 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.accept(self.uniqueName("PlayerGenerated"), self.player_object_generated)
+        self.accept(self.uniqueName("PlayerObjectGenerated"), self.player_object_generated)
         self.setInterestZones([1, 2])
 
         print("Client Ready")
@@ -117,14 +113,23 @@ class GameClientRepository(ClientRepository):
     def update(self, dt):
         pass
 
+    def game_mgr_generated(self, do_id):
+        print("Game manager generated: ", str(do_id))
+        self.game_mgr = self.doId2do[do_id]
+
     def player_object_generated(self, do_id):
         print("Player object generated: " + str(do_id))
-
-        self.local_player_id = do_id
         self.player = self.doId2do[do_id]
+        messenger.send("player-ready")
 
     def request_join(self):
-        pass
+        if not self.game_mgr:
+            return
+
+        self.game_mgr.d_request_join()
 
     def request_leave(self):
-        pass
+        if not self.game_mgr:
+            return
+
+        self.game_mgr.d_request_leave(self.player.doId)
