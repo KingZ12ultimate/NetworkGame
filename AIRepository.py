@@ -75,7 +75,7 @@ class AIRepository(ClientRepository):
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
         self.player = self.createDistributedObject(className='DPlayer', zoneId=2)
         self.add_player(self.player)
-        print(self.player)
+        print(self.player.cr.doIdBase)
         self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")

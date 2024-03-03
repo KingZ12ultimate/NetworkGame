@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/DirectClientServer/BulletRigidBodyNP.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirectClientServer/ConnectionConstants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DGameManager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DGameManagerAI.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager.dc" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Direct client-server/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Direct client-server/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DirectClientServer/GameServer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="5346f99e-39bf-4c74-8eaf-b43586860fc9" />
+        <option name="accountId" value="8faac2aa-f1c2-441d-a2a0-fc5bfa99e05a" />
         <option name="url" value="https://github.com/KingZ12ultimate/NetworkGame.git" />
       </UrlAndAccount>
     </option>
@@ -55,31 +55,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
-    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
-    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
-    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.character.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/PycharmProjects/NetworkGame/SinglePlayer&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pathVariables&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.01_Basics.executor": "Run",
+    "Python.02_Shapes.executor": "Run",
+    "Python.03_Heightfield.executor": "Run",
+    "Python.17_Character.executor": "Run",
+    "Python.25_SoftbodyTetra.executor": "Run",
+    "Python.Client.executor": "Run",
+    "Python.Game (1).executor": "Run",
+    "Python.Game.executor": "Run",
+    "Python.Helpers.executor": "Run",
+    "Python.Player.executor": "Run",
+    "Python.Server.executor": "Run",
+    "Python.SimpleThirdPersonCameraTester.executor": "Run",
+    "Python.Testi.executor": "Run",
+    "Python.character.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/roee/PycharmProjects/NetworkGame/SinglePlayer",
+    "settings.editor.selected.configurable": "editor.preferences.completion"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
@@ -267,7 +267,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709286349986</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="changes">
+      <option name="closed" value="true" />
+      <created>1709452977723</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709452977723</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -4,6 +4,7 @@ from panda3d.core import ConnectionWriter
 from direct.distributed.PyDatagram import PyDatagram
 from direct.task.Task import Task
 from direct.showbase.ShowBase import ShowBase
+from CPlayer import CPlayer
 
 
 port_address = 9099
@@ -23,10 +24,11 @@ class Client(ShowBase):
         if self.my_connection:
             self.c_reader.add_connection(self.my_connection)
 
-        self.task_mgr.add(self.update, "update")
+        self.player = CPlayer(self.my_connection, self.c_reader, self.c_writer)
+        # self.task_mgr.add(self.update, "update")
 
     def update(self, task):
-        message = input()
+        message = ""
         if message == "quit":
             self.c_manager.close_connection(self.my_connection)
         my_py_datagram = PyDatagram()

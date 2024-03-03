@@ -3,6 +3,7 @@ from panda3d.core import ConnectionWriter, PointerToConnection, NetAddress, NetD
 from direct.distributed.PyDatagramIterator import PyDatagramIterator
 from direct.task.Task import Task
 from direct.showbase.ShowBase import ShowBase
+from ConnectionConstants import ConnectionConstants
 
 
 port_address = 9099
@@ -10,7 +11,7 @@ port_address = 9099
 
 class Server(ShowBase):
     def __init__(self):
-        ShowBase.__init__(self)
+        ShowBase.__init__(self, windowType="none")
 
         self.c_manager = QueuedConnectionManager()
         self.c_listener = QueuedConnectionListener(self.c_manager, 0)
@@ -43,7 +44,10 @@ class Server(ShowBase):
             datagram = NetDatagram()
             if self.c_reader.get_data(datagram):
                 iterator = PyDatagramIterator(datagram)
-                print(iterator.get_string())
+                msg_id = iterator.get_uint8()
+                if msg_id == ConnectionConstants.CREATE_OBJECT:
+                    class_name = "S" + iterator.get_string()
+
         return Task.cont
 
 
