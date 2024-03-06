@@ -7,13 +7,17 @@ struct PlayerInput {
     int8 move_x;
     int8 move_y;
     bool jump;
-};
+}
 
 dclass DGameManager: DistributedObject {
     request_join() p2p;
     request_leave(uint8 player_id) p2p;
+    join_success(uint8 player_id) p2p;
+    left_success() p2p;
 };
 
-dclass DPlayer: DistributedNode {};
+dclass DPlayer: DistributedNode {
+    send_input(PlayerInput p_input) p2p;
+};
 
 dclass DCherry: DistributedNode {};

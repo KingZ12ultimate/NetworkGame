@@ -1,8 +1,11 @@
+
+from multiprocessing.pool import Pool
 from direct.distributed.ClientRepository import ClientRepository
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec3
 from panda3d.bullet import BulletWorld
+from DGameManagerAI import DGameManagerAI
 from DPlayerAI import DPlayerAI
 
 
@@ -17,6 +20,7 @@ class AIRepository(ClientRepository):
         self.base = base
         self.update_task = None
         self.players = []
+        self.game_mgr: DGameManagerAI | None = None
 
         # Create the physics world
         self.world = BulletWorld()
@@ -73,6 +77,7 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
+        self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=2)
         self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
@@ -82,6 +87,28 @@ class AIRepository(ClientRepository):
             1. gathering player input
             2. processing the input
             3. advance the physics simulation"""
+        if not self.players:
+            return
+
+        dt = self.base.clock.get_dt()
+
+        def handle_input(player: DPlayerAI):
+            self.accept("received-input-" + str(player.doId), player.update, [dt])
+
+        pool_obj = Pool()
+        pool_obj.map(handle_input, self.players)
+        pool_obj.close()
+
+        self.world.do_physics(dt)
+
+        def send_position(player: DPlayerAI):
+            pos = player.get_pos()
+            player.d_setPos(pos.get_x(), pos.get_y(), pos.get_z())
+
+        pool_obj = Pool()
+        pool_obj.map(send_position, self.players)
+        pool_obj.close()
+
         return task.cont
 
     def add_player(self, player: DPlayerAI):

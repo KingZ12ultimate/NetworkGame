@@ -104,20 +104,20 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.accept(self.uniqueName("PlayerObjectGenerated"), self.player_object_generated)
+        self.accept(self.uniqueName("GameManagerGenerated"), self.game_mgr_generated)
         self.setInterestZones([1, 2])
 
         print("Client Ready")
         messenger.send("client-ready")
 
-    def update(self, dt):
-        pass
+    def update(self):
+        self.player.d_send_input()
 
     def game_mgr_generated(self, do_id):
         print("Game manager generated: ", str(do_id))
         self.game_mgr = self.doId2do[do_id]
 
-    def player_object_generated(self, do_id):
+    def add_player(self, do_id):
         print("Player object generated: " + str(do_id))
         self.player = self.doId2do[do_id]
         messenger.send("player-ready")

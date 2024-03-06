@@ -33,6 +33,10 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         self.model.reparent_to(self)
         self.skin_width = 0.05
 
+    def delete(self):
+        print("deleting player object AI", self.doId)
+        DistributedNodeAI.delete(self)
+
     def add_collider(self):
         box = self.model.get_tight_bounds()
         size = box[1] - box[0]
@@ -66,6 +70,8 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         self.velocity.set_z(self.node().get_linear_velocity().get_z())
         self.node().set_linear_velocity(self.velocity)
 
-    def delete(self):
-        print("deleting player object AI", self.doId)
-        DistributedNodeAI.delete(self)
+    def send_input(self, p_input):
+        """Receives player input"""
+        self.move_input = Vec2(p_input[0], p_input[1])
+        self.jump_pressed = p_input[2]
+        messenger.send("received-input-" + str(self.doId))
