@@ -6,7 +6,7 @@ import DCherry
 struct PlayerInput {
     int8 move_x;
     int8 move_y;
-    bool jump;
+    uint8 jump;
 }
 
 dclass DGameManager: DistributedObject {

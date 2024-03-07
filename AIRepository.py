@@ -1,7 +1,7 @@
-
 from multiprocessing.pool import Pool
 from direct.distributed.ClientRepository import ClientRepository
 from direct.showbase.ShowBase import ShowBase
+from direct.task.Task import Task
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec3
 from panda3d.bullet import BulletWorld
@@ -88,28 +88,23 @@ class AIRepository(ClientRepository):
             2. processing the input
             3. advance the physics simulation"""
         if not self.players:
+            print("HAHA!")
             return
 
         dt = self.base.clock.get_dt()
 
-        def handle_input(player: DPlayerAI):
-            self.accept("received-input-" + str(player.doId), player.update, [dt])
-
-        pool_obj = Pool()
-        pool_obj.map(handle_input, self.players)
-        pool_obj.close()
+        for player in self.players:
+            # self.accept("received-input-" + str(player.doId), player.update, [dt])
+            print("HI")
+            player.update(dt)
 
         self.world.do_physics(dt)
 
-        def send_position(player: DPlayerAI):
+        for player in self.players:
             pos = player.get_pos()
             player.d_setPos(pos.get_x(), pos.get_y(), pos.get_z())
 
-        pool_obj = Pool()
-        pool_obj.map(send_position, self.players)
-        pool_obj.close()
-
-        return task.cont
+        return Task.again
 
     def add_player(self, player: DPlayerAI):
         # Adding a collider

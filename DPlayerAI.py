@@ -50,6 +50,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
 
     def update(self, dt):
         """Adjusts the player's velocity according to the received input."""
+        print("pussy")
         self.node().set_active(True)  # prevents unwanted sleeping of the rigid body
         if self.move_input == Vec2.zero():
             friction_amount = self.friction * dt

@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change beforePath="$PROJECT_DIR$/.idea/NetworkGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkGame.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes, but still a problem with transmitting input">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/ClientRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DGameManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/DGameManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DGameManagerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/ListOfClasses.dc" afterDir="false" />
     </list>
@@ -297,7 +290,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1709462408124</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL‎-00011" summary="changes, but still a problem with transmitting input">
+      <option name="closed" value="true" />
+      <created>1709753207104</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL‎-00011" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1709753207104</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,7 +316,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="requirements added" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="changes, but still a problem with transmitting input" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes, but still a problem with transmitting input" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

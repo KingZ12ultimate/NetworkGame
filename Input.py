@@ -30,7 +30,7 @@ class Input(DirectObject.DirectObject):
         self.accept("d", self.__update_map, ["d", True])
         self.accept("d-up", self.__update_map, ["d", False])
 
-        self.accept("space", Input.jump_pressed.setter, [1])
+        self.accept("space", Input.jump_pressed.setter, [True])
 
         self.accept("arrow_up", self.__update_map, ["up", True])
         self.accept("arrow_up-up", self.__update_map, ["up", False])
