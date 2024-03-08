@@ -2,6 +2,7 @@
 from direct.showbase.ShowBase import ShowBase
 
 from ClientRepository import GameClientRepository
+from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 from panda3d.core import TextNode, WindowProperties, Vec3
@@ -29,13 +30,36 @@ class GameClient(ShowBase):
         self.accept("client-ready", self.set_connected_message)
 
         self.title = self.add_title("Panda3D: Tutorial - Distributed Network (NOT CONNECTED)")
-        inst1 = self.add_instruction(0.06, "t: join the game")
-        inst2 = self.add_instruction(0.12, "See console output")
 
         self.cr = GameClientRepository(self)
-        self.accept_once("t", self.join)
+
+        self.main_menu_backdrop = DirectFrame(frameColor=(0, 0, 0, 1),
+                                              frameSize=(-1, 1, -1, 1),
+                                              parent=self.render2d)
+        self.main_menu = DirectFrame(frameColor=(1, 1, 1, 0))
+        title1 = DirectLabel(text="PUSSY TIGHT",
+                             scale=0.3,
+                             pos=(0, 0, 0.7),
+                             parent=self.main_menu,
+                             relief=None,
+                             text_fg=(1, 1, 1, 1))
+
+        btn = DirectButton(text="Join Game",
+                           command=self.join,
+                           pos=(0, 0, 0.2),
+                           parent=self.main_menu,
+                           scale=0.1,
+                           frameSize=(-4, 4, -1, 1),
+                           text_scale=0.75,
+                           relief=DGG.FLAT,
+                           text_pos=(0, -0.2))
+        btn.set_transparency(1)
+
+        self.exitFunc = self.leave
 
     def join(self):
+        self.main_menu.hide()
+        self.main_menu_backdrop.hide()
         self.cr.request_join()
 
         def join_success():

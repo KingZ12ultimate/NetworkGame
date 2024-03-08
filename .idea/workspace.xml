@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes, but still a problem with transmitting input">
+      <change beforePath="$PROJECT_DIR$/.idea/NetworkGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkGame.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/ListOfClasses.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,32 +54,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
-    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
-    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
-    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GameServer.executor&quot;: &quot;Debug&quot;,
-    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
-    &quot;Python.character.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.01_Basics.executor": "Run",
+    "Python.02_Shapes.executor": "Run",
+    "Python.03_Heightfield.executor": "Run",
+    "Python.17_Character.executor": "Run",
+    "Python.25_SoftbodyTetra.executor": "Run",
+    "Python.AIRepository.executor": "Debug",
+    "Python.Client.executor": "Run",
+    "Python.Game (1).executor": "Run",
+    "Python.Game.executor": "Run",
+    "Python.GameServer.executor": "Debug",
+    "Python.Helpers.executor": "Run",
+    "Python.Player.executor": "Run",
+    "Python.Server.executor": "Run",
+    "Python.SimpleThirdPersonCameraTester.executor": "Run",
+    "Python.Testi.executor": "Run",
+    "Python.character.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models",
+    "settings.editor.selected.configurable": "editor.preferences.completion"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\AMIT.DESKTOP-O006H9P\PycharmProjects\NetworkGame\DirectClientServer\Models" />
@@ -93,7 +96,7 @@
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork\repositories" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Client">
+  <component name="RunManager">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="NetworkGame" />
       <option name="ENV_FILES" value="" />
@@ -197,7 +200,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>
@@ -318,16 +321,5 @@
     <MESSAGE value="changes" />
     <MESSAGE value="changes, but still a problem with transmitting input" />
     <option name="LAST_COMMIT_MESSAGE" value="changes, but still a problem with transmitting input" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/venv/Lib/site-packages/direct/distributed/ClientRepository.py</url>
-          <line>215</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

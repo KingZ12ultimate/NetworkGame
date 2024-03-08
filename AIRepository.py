@@ -78,7 +78,6 @@ class AIRepository(ClientRepository):
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
         self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=2)
-        self.update_task = self.base.task_mgr.add(self.update, "update-task")
 
         print("AI Repository Ready")
 
@@ -88,14 +87,12 @@ class AIRepository(ClientRepository):
             2. processing the input
             3. advance the physics simulation"""
         if not self.players:
-            print("HAHA!")
-            return
+            return Task.cont
 
         dt = self.base.clock.get_dt()
 
         for player in self.players:
             # self.accept("received-input-" + str(player.doId), player.update, [dt])
-            print("HI")
             player.update(dt)
 
         self.world.do_physics(dt)
@@ -104,7 +101,7 @@ class AIRepository(ClientRepository):
             pos = player.get_pos()
             player.d_setPos(pos.get_x(), pos.get_y(), pos.get_z())
 
-        return Task.again
+        return Task.cont
 
     def add_player(self, player: DPlayerAI):
         # Adding a collider
