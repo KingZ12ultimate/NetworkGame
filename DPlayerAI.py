@@ -16,7 +16,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         BulletRigidBodyNP.__init__(self, "Player")
 
         # Input parameters
-        self.move_input = Vec2.zero()
+        self.move_input = Vec3(0, 0, 0)
         self.jump_pressed = False
 
         # Setting physical properties and constrains
@@ -51,7 +51,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
     def update(self, dt):
         """Adjusts the player's velocity according to the received input."""
         self.node().set_active(True)  # prevents unwanted sleeping of the rigid body
-        if self.move_input == Vec2.zero():
+        if self.move_input == Vec3.zero():
             friction_amount = self.friction * dt
             if friction_amount > self.velocity.length():
                 self.velocity.set(0.0, 0.0, 0.0)
@@ -59,7 +59,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
                 friction_vec = -self.velocity.normalized() * friction_amount
                 self.velocity += friction_vec
         else:
-            self.velocity += Vec3(self.move_input, 0) * self.acceleration * dt
+            self.velocity += self.move_input * self.acceleration * dt
 
         # Clamp velocity on XY plane
         self.velocity.set_z(0)
@@ -72,6 +72,6 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
 
     def send_input(self, p_input):
         """Receives player input"""
-        self.move_input = Vec2(p_input[0], p_input[1])
-        self.jump_pressed = p_input[2]
+        self.move_input = Vec3(p_input[0], p_input[1], p_input[2])
+        self.jump_pressed = p_input[3]
         messenger.send("received-input-" + str(self.doId))

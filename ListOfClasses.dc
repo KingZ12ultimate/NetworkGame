@@ -4,8 +4,9 @@ import DCherry
 
 
 struct PlayerInput {
-    int8 move_x;
-    int8 move_y;
+    int16 move_x/10000;
+    int16 move_y/10000;
+    int16 move_z/10000;
     uint8 jump;
 }
 

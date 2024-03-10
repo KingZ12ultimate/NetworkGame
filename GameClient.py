@@ -64,6 +64,7 @@ class GameClient(ShowBase):
 
         def join_success():
             self.camera_mgr = Camera(self.camera, self.cr.player, 40, 10, 0.75)
+            self.cr.player.set_input_space(self.camera)
             self.task_mgr.add(self.update, "update-task")
             self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
                                   + str(self.cr.player.doId))
