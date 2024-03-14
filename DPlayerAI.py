@@ -26,7 +26,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         self.friction = 100.0
         self.air_friction = 3.0
         self.gravity_multiplier = 5.0
-        self.set_pos(random.uniform(-10.0, 10.0), random.uniform(-10.0, 10.0), 0)
+        self.set_pos(random.uniform(-10.0, 10.0), random.uniform(-10.0, 10.0), 10)
 
         self.model = base.loader.load_model("models/panda")
         self.model.set_scale(0.2)

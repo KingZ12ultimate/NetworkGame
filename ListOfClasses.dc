@@ -1,4 +1,5 @@
 import DGameManager/AI
+import DLevel/AI
 import DPlayer/AI
 import DCherry
 
@@ -16,6 +17,8 @@ dclass DGameManager: DistributedObject {
     join_success(uint8 player_id) p2p;
     left_success() p2p;
 };
+
+dclass DLevel: DistributedNode {};
 
 dclass DPlayer: DistributedNode {
     send_input(PlayerInput p_input) p2p;

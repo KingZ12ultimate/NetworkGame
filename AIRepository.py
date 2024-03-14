@@ -3,10 +3,11 @@ from direct.distributed.ClientRepository import ClientRepository
 from direct.showbase.ShowBase import ShowBase
 from direct.task.Task import Task
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-from panda3d.core import Vec3
-from panda3d.bullet import BulletWorld
+from panda3d.core import Vec3, Filename, PNMImage
+from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
 from DGameManagerAI import DGameManagerAI
 from DPlayerAI import DPlayerAI
+from DLevelAI import DLevelAI
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -21,10 +22,11 @@ class AIRepository(ClientRepository):
         self.update_task = None
         self.players = []
         self.game_mgr: DGameManagerAI | None = None
+        self.level: DLevelAI | None = None
 
         # Create the physics world
         self.world = BulletWorld()
-        # self.world.set_gravity(GRAVITY)
+        self.world.set_gravity(GRAVITY)
         self.world_np = self.base.render.attach_new_node("Physics-World")
 
         # Getting ready to establish a connection
@@ -78,6 +80,14 @@ class AIRepository(ClientRepository):
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
         self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=2)
+        self.level = self.createDistributedObject(className='DLevelAI', zoneId=2)
+
+        # Add terrain rigid body to the world
+        height_map = PNMImage(Filename("HeightMap.png"))
+        collider = BulletHeightfieldShape(height_map, 10, Z_up)
+        self.level.node().add_shape(collider)
+        self.world.attach(self.level.node())
+        self.level.reparent_to(self.world_np)
 
         print("AI Repository Ready")
 

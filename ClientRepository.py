@@ -7,6 +7,7 @@ from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec2
 from DGameManager import DGameManager
 from DPlayer import DPlayer
+from DLevel import DLevel
 
 
 class GameClientRepository(ClientRepository):
@@ -17,6 +18,7 @@ class GameClientRepository(ClientRepository):
         # distributed objects for our game
         self.game_mgr: DGameManager | None = None
         self.player: DPlayer | None = None
+        self.level: DLevel | None = None
 
         self.move_input = Vec2.zero()
         self.jump_pressed = False
@@ -105,17 +107,24 @@ class GameClientRepository(ClientRepository):
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
         self.accept(self.uniqueName("GameManagerGenerated"), self.game_mgr_generated)
+        self.accept(self.uniqueName("LevelGenerated"), self.level_generated)
         self.setInterestZones([1, 2])
 
         print("Client Ready")
         messenger.send("client-ready")
 
     def update(self):
+        self.player.update()
         self.player.d_send_input()
+        self.level.terrain.update()
 
     def game_mgr_generated(self, do_id):
         print("Game manager generated: ", str(do_id))
         self.game_mgr = self.doId2do[do_id]
+
+    def level_generated(self, do_id):
+        print("Level generated")
+        self.level = self.doId2do[do_id]
 
     def add_player(self, do_id):
         print("Player object generated: " + str(do_id))

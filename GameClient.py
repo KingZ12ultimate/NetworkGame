@@ -5,7 +5,7 @@ from ClientRepository import GameClientRepository
 from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
-from panda3d.core import TextNode, WindowProperties, Vec3
+from panda3d.core import TextNode, WindowProperties, Vec3, DirectionalLight
 from Camera import Camera
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -26,6 +26,12 @@ class GameClient(ShowBase):
         self.render.set_shader_auto()
 
         self.camera.set_pos(0, -10, 5)
+
+        d_light = DirectionalLight('dlight')
+        d_light.set_color((0.5, 0.8, 0.8, 1))
+        dlnp = self.render.attach_new_node(d_light)
+        dlnp.set_hpr(0, -60, 0)
+        self.render.set_light(dlnp)
 
         self.accept("client-ready", self.set_connected_message)
 
