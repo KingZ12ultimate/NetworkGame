@@ -14,6 +14,8 @@ GRAVITY = Vec3(0, 0, -9.81)
 
 
 class AIRepository(ClientRepository):
+    NUM_OF_CHERRIES = 100
+
     def __init__(self, base: ShowBase):
         """The AI Repository usually lives on a server and is responsible for
         server side logic that will handle game objects"""

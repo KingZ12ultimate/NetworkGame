@@ -1,7 +1,7 @@
 from direct.distributed.DistributedNode import DistributedNode
 from direct.interval.LerpInterval import LerpQuatInterval
 from panda3d.core import Vec3, NodePath, Quat
-from Helpers import BulletRigidBodyNP
+from Globals import BulletRigidBodyNP
 from Input import global_input
 from math import atan2, sin, cos
 

@@ -2,7 +2,7 @@ import math
 import numpy as np
 
 from panda3d.core import NodePath, Vec2, Quat
-from Helpers import lerp, _distance, move_towards_angle, delta_angle
+from Globals import lerp, _distance, move_towards_angle, delta_angle
 from Input import global_input
 
 

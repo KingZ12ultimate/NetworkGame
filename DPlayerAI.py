@@ -4,7 +4,7 @@ from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from direct.showbase.MessengerGlobal import messenger
 from panda3d.bullet import BulletCapsuleShape, Z_up
 from panda3d.core import Vec2, Vec3
-from Helpers import BulletRigidBodyNP
+from Globals import BulletRigidBodyNP
 
 
 class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):

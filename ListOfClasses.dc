@@ -1,7 +1,7 @@
 import DGameManager/AI
 import DLevel/AI
 import DPlayer/AI
-import DCherry
+import DCherry/AI
 
 
 struct PlayerInput {
