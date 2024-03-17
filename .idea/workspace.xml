@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/DCherryAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DLevelAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DLevelAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/ListOfClasses.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DPlayerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +170,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>

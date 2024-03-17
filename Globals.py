@@ -1,6 +1,12 @@
 import math
-from panda3d.core import Point3, Vec3, Quat, NodePath
+from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32
 from panda3d.bullet import BulletRigidBodyNode
+
+
+masks = {
+    "player": BitMask32.bit(0),
+    "terrain": BitMask32.bit(1)
+}
 
 
 def lerp(a, b, t): return a * (1 - t) + b * t
