@@ -29,3 +29,6 @@ class DLevel(DistributedNode):
         print("deleting level", self.doId)
         self.detach_node()
         DistributedNode.delete(self)
+
+    def d_generate_cherries(self):
+        self.sendUpdate("generate_cherries")

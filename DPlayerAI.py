@@ -63,6 +63,9 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
 
         self.node().add_shape(BulletCapsuleShape(radius, height, Z_up))
 
+    def start_jump_buffer_timer(self):
+        self.jump_buffer_timer = self.jump_buffer
+
     def evaluate_collisions(self):
         result = self.air.world.contact_test(self.node(), masks["terrain"])
         if result.get_num_contacts() > 0:
@@ -80,12 +83,16 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         else:
             self.contact_normal = Vec3.up()
 
+        if self.jump_pressed:
+            self.start_jump_buffer_timer()
+
     def clear_state(self):
         self.num_ground_contacts = 0
         self.contact_normal = Vec3.zero()
+        self.jump_pressed = False
 
     def jump(self):
-        if self.jump_buffer_timer > 0:
+        if self.jump_buffer_timer > 0.0:
             self.node().setGravity(Vec3(0, 0, self.__jump_gravity))
             amount = self.__jump_speed
             if self.velocity.get_z() > 0:

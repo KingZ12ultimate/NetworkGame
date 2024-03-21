@@ -18,10 +18,14 @@ dclass DGameManager: DistributedObject {
     left_success() p2p;
 };
 
-dclass DLevel: DistributedNode {};
+dclass DLevel: DistributedNode {
+    generate_cherries() p2p;
+};
 
 dclass DPlayer: DistributedNode {
     send_input(PlayerInput p_input) p2p;
 };
 
-dclass DCherry: DistributedNode {};
+dclass DCherry: DistributedNode {
+    request_pos() p2p;
+};

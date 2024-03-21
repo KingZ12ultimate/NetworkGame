@@ -75,3 +75,7 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
                    self.move_input.get_z(),
                    global_input.jump_pressed)
         self.sendUpdate("send_input", [p_input])
+
+        # Reset jump input if True
+        if p_input[3]:
+            global_input.set_jump_pressed(False)

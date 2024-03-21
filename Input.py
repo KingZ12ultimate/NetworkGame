@@ -30,7 +30,7 @@ class Input(DirectObject.DirectObject):
         self.accept("d", self.__update_map, ["d", True])
         self.accept("d-up", self.__update_map, ["d", False])
 
-        self.accept("space", Input.jump_pressed.setter, [True])
+        self.accept("space", self.set_jump_pressed, [True])
 
         self.accept("arrow_up", self.__update_map, ["up", True])
         self.accept("arrow_up-up", self.__update_map, ["up", False])
@@ -72,8 +72,7 @@ class Input(DirectObject.DirectObject):
     def jump_pressed(self):
         return self.__jump_pressed
 
-    @jump_pressed.setter
-    def jump_pressed(self, value):
+    def set_jump_pressed(self, value):
         self.__jump_pressed = value
 
     def __update_map(self, key, value):
