@@ -1,7 +1,7 @@
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from panda3d.core import Filename, PNMImage
 from Globals import BulletRigidBodyNP, masks
-from DCherryAI import DCherryAI
+from DistributedObjects.DCherryAI import DCherryAI
 
 
 class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
@@ -15,7 +15,7 @@ class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
         self.set_collide_mask(masks["terrain"])
         self.cherries: list[DCherryAI] = []
 
-        self.height_map = PNMImage(Filename("HeightMap.png"))
+        self.height_map = PNMImage(Filename("Assets/HeightMap.png"))
         self.height = 10
 
     def generate_cherries(self):

@@ -16,7 +16,7 @@ class CPlayer(BulletRigidBodyNP):
         self.c_reader = c_reader
         self.c_writer = c_writer
 
-        self.model = base.loader.load_model("Models/panda")
+        self.model = base.loader.load_model("Assets/panda")
         print(self.model)
         self.model.set_scale(0.5)
         self.model.reparent_to(self)

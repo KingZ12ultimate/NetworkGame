@@ -23,5 +23,8 @@ class DGameManager(DistributedObject):
     def join_success(self, player_id):
         self.cr.add_player(player_id)
 
+    def join_failure(self):
+        print("Failed to join, full capacity. Try again later")
+
     def left_success(self):
         self.delete()

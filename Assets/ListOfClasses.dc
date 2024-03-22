@@ -1,7 +1,7 @@
-import DGameManager/AI
-import DLevel/AI
-import DPlayer/AI
-import DCherry/AI
+from GameManager.DGameManager/AI import DGameManager/AI
+from DistributedObjects.DLevel/AI import DLevel/AI
+from DistributedObjects.DPlayer/AI import DPlayer/AI
+from DistributedObjects.DCherry/AI import DCherry/AI
 
 
 struct PlayerInput {
@@ -15,6 +15,7 @@ dclass DGameManager: DistributedObject {
     request_join() p2p;
     request_leave(uint8 player_id) p2p;
     join_success(uint8 player_id) p2p;
+    join_failure() p2p;
     left_success() p2p;
 };
 

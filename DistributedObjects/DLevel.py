@@ -9,7 +9,7 @@ class DLevel(DistributedNode):
 
         # initiate the terrain
         self.terrain = GeoMipTerrain("LevelTerrain")
-        self.terrain.set_heightfield("HeightMap.png")
+        self.terrain.set_heightfield("Assets/HeightMap.png")
         self.terrain.get_root().reparent_to(self)
         self.terrain.get_root().set_sz(10)
         self.terrain.get_root().set_pos(-512, -512, -5)

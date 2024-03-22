@@ -1,7 +1,7 @@
 # imports for the engine
 from direct.showbase.ShowBase import ShowBase
 
-from ClientRepository import GameClientRepository
+from Repositories.ClientRepository import GameClientRepository
 from direct.gui.DirectGui import *
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task

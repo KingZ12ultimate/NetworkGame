@@ -2,6 +2,8 @@ from direct.distributed.DistributedObjectAI import DistributedObjectAI
 
 
 class DGameManagerAI(DistributedObjectAI):
+    MAX_PLAYERS = 4
+
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
 
@@ -10,6 +12,12 @@ class DGameManagerAI(DistributedObjectAI):
 
     def request_join(self):
         requester_id = self.air.getAvatarIdFromSender()
+
+        # Add player only if the current number of players is less than the maximum
+        if not len(self.air.players) < self.MAX_PLAYERS:
+            self.sendUpdateToAvatarId(requester_id, "join_failure", [])
+            return
+
         player = self.air.createDistributedObject(className="DPlayerAI", zoneId=2)
         self.air.add_player(player)
         self.sendUpdateToAvatarId(requester_id, "join_success", [player.doId])

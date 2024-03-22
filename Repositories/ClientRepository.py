@@ -5,14 +5,14 @@ from direct.showbase.MessengerGlobal import messenger
 from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec2
-from DGameManager import DGameManager
-from DPlayer import DPlayer
-from DLevel import DLevel
+from GameManager.DGameManager import DGameManager
+from DistributedObjects.DPlayer import DPlayer
+from DistributedObjects.DLevel import DLevel
 
 
 class GameClientRepository(ClientRepository):
     def __init__(self, base: ShowBase):
-        dc_file_names = ["direct.dc", "ListOfClasses.dc"]
+        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
         self.base = base
 
         # distributed objects for our game

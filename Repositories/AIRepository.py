@@ -1,13 +1,13 @@
-from multiprocessing.pool import Pool
 from direct.distributed.ClientRepository import ClientRepository
 from direct.showbase.ShowBase import ShowBase
 from direct.task.Task import Task
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-from panda3d.core import Vec3, Filename, PNMImage
+from panda3d.core import Vec3
 from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
-from DGameManagerAI import DGameManagerAI
-from DPlayerAI import DPlayerAI
-from DLevelAI import DLevelAI
+from GameManager.DGameManagerAI import DGameManagerAI
+from DistributedObjects.DPlayerAI import DPlayerAI
+from DistributedObjects.DLevelAI import DLevelAI
+from Globals import SERVER_MANAGERS, GAME_MANAGERS
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -30,7 +30,7 @@ class AIRepository(ClientRepository):
         self.world_np = self.base.render.attach_new_node("Physics-World")
 
         # Getting ready to establish a connection
-        dc_file_names = ["direct.dc", "ListOfClasses.dc"]
+        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
         tcp_port = ConfigVariableInt("server-port", 4400).get_value()
@@ -78,8 +78,8 @@ class AIRepository(ClientRepository):
 
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
-        self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=1)
-        self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=2)
+        self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=SERVER_MANAGERS)
+        self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=GAME_MANAGERS)
         self.level = self.createDistributedObject(className='DLevelAI', zoneId=2)
 
         # Add terrain rigid body to the world
