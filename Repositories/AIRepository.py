@@ -80,6 +80,10 @@ class AIRepository(ClientRepository):
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=SERVER_MANAGERS)
         self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=GAME_MANAGERS)
+
+        print("AI Repository Ready")
+
+    def create_level(self):
         self.level = self.createDistributedObject(className='DLevelAI', zoneId=2)
 
         # Add terrain rigid body to the world
@@ -88,7 +92,7 @@ class AIRepository(ClientRepository):
         self.world.attach(self.level.node())
         self.level.reparent_to(self.world_np)
 
-        print("AI Repository Ready")
+        self.level.generate_cherries()
 
     def update(self, task):
         """The main task that will handle game logic, in that order:

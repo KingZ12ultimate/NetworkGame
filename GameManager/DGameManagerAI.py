@@ -6,6 +6,7 @@ class DGameManagerAI(DistributedObjectAI):
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
+        self.players = []
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)
@@ -14,13 +15,19 @@ class DGameManagerAI(DistributedObjectAI):
         requester_id = self.air.getAvatarIdFromSender()
 
         # Add player only if the current number of players is less than the maximum
-        if not len(self.air.players) < self.MAX_PLAYERS:
+        if not len(self.players) < self.MAX_PLAYERS:
             self.sendUpdateToAvatarId(requester_id, "join_failure", [])
             return
 
         player = self.air.createDistributedObject(className="DPlayerAI", zoneId=2)
-        self.air.add_player(player)
+        self.players.append(player)
         self.sendUpdateToAvatarId(requester_id, "join_success", [player.doId])
+
+        # if we reached maximum players, start the level
+        if len(self.players) == self.MAX_PLAYERS:
+            self.air.create_level()
+            for p in self.players:
+                self.air.add_player(p)
 
     def request_leave(self, player_id):
         requester_id = self.air.getAvatarIdFromSender()

@@ -125,11 +125,11 @@ class GameClientRepository(ClientRepository):
     def level_generated(self, do_id):
         print("Level generated")
         self.level = self.doId2do[do_id]
+        messenger.send("level-ready")
 
     def add_player(self, do_id):
         print("Player object generated: " + str(do_id))
         self.player = self.doId2do[do_id]
-        messenger.send("player-ready")
 
     def request_join(self):
         if not self.game_mgr:

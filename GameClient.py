@@ -74,9 +74,8 @@ class GameClient(ShowBase):
             self.task_mgr.add(self.update, "update-task")
             self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
                                   + str(self.cr.player.doId))
-            self.cr.level.d_generate_cherries()
 
-        self.accept("player-ready", join_success)
+        self.accept("level-ready", join_success)
         self.accept_once("q", self.leave)
 
     def leave(self):

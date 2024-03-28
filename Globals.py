@@ -5,8 +5,8 @@ from panda3d.bullet import BulletRigidBodyNode
 
 SERVER_MANAGERS = 1
 GAME_MANAGERS = 2
-MIN_LEVEL_ID = 3
-MAX_LEVEL_ID = 6
+LEVEL_ZONE = 3
+
 
 masks = {
     "player": BitMask32.bit(0),
