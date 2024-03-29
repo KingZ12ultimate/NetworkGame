@@ -20,6 +20,9 @@ class DGameManager(DistributedObject):
     def d_request_leave(self, player_id):
         self.sendUpdate("request_leave", [player_id])
 
+    def d_request_quit(self):
+        self.sendUpdate("request_quit")
+
     def join_success(self, player_id):
         self.cr.add_player(player_id)
 

@@ -45,7 +45,7 @@ class AIRepository(ClientRepository):
 
     def lostConnection(self):
         """ This should be overridden by a derived class to handle an
-                unexpectedly lost connection to the gameserver. """
+                unexpectedly lost connection to the game server. """
         # Handle the disconnection from the server.  This can be a reconnect,
         # simply exiting the application or anything else.
         exit()
@@ -107,6 +107,8 @@ class AIRepository(ClientRepository):
         for player in self.players:
             # self.accept("received-input-" + str(player.doId), player.update, [dt])
             player.update(dt)
+
+        self.level.update()
 
         self.world.do_physics(dt)
 

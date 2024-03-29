@@ -143,3 +143,9 @@ class GameClientRepository(ClientRepository):
             return
 
         self.game_mgr.d_request_leave(self.player.doId)
+
+    def request_quit(self):
+        if not self.game_mgr:
+            return
+
+        self.game_mgr.d_request_quit()

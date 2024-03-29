@@ -1,6 +1,7 @@
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from panda3d.bullet import BulletGhostNode, BulletBoxShape
 from panda3d.core import NodePath
+from Globals import masks
 
 
 class BulletGhostNodeNP(NodePath):
@@ -20,6 +21,10 @@ class DCherryAI(DistributedNodeAI, BulletGhostNodeNP):
         box = self.model.get_tight_bounds()
         size = box[1] - box[0]
         self.node().add_shape(BulletBoxShape(size))
+
+        self.air.world_np.attach_new_node(self)
+        self.air.world.attach(self.node())
+        self.set_collide_mask(masks["player"])
         self.set_pos(pos)
 
     def announceGenerate(self):

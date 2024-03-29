@@ -1,3 +1,5 @@
+from multiprocessing.pool import Pool
+
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from panda3d.core import Filename, PNMImage
 from Globals import BulletRigidBodyNP, masks
@@ -30,3 +32,13 @@ class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
                 cherry = DCherryAI(self.air, pos)
                 self.cherries.append(cherry)
                 self.air.createDistributedObject(distObj=cherry, zoneId=self.zoneId)
+
+    def update(self):
+        def update_cherry(cherry: DCherryAI):
+            if cherry.node().get_num_overlapping_nodes() > 0:
+                self.cherries.remove(cherry)
+                self.air.sendDeleteMsg(cherry.doId)
+
+        pool_obj = Pool()
+        pool_obj.map(update_cherry, self.cherries)
+        pool_obj.close()

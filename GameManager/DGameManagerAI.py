@@ -1,8 +1,10 @@
 from direct.distributed.DistributedObjectAI import DistributedObjectAI
+from panda3d.core import UniqueIdAllocator
+from Globals import MIN_LEVEL_ZONE, MAX_LEVEL_ZONE
 
 
 class DGameManagerAI(DistributedObjectAI):
-    MAX_PLAYERS = 4
+    MAX_PLAYERS = 2
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
@@ -30,8 +32,10 @@ class DGameManagerAI(DistributedObjectAI):
                 self.air.add_player(p)
 
     def request_leave(self, player_id):
-        requester_id = self.air.getAvatarIdFromSender()
         player = self.air.doId2do[player_id]
         self.air.remove_player(player)
         self.air.sendDeleteMsg(player_id)
+
+    def request_quit(self):
+        requester_id = self.air.getAvatarIdFromSender()
         self.sendUpdateToAvatarId(requester_id, "left_success", [])

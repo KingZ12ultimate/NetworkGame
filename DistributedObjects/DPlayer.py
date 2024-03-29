@@ -46,6 +46,9 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
                                                       name="rotationInterval")
             self.rotation_interval.start()
 
+        # send hpr to all clients
+        self.d_setHpr(self.get_h(), self.get_p(), self.get_r())
+
     def update(self):
         self.move_input = self.get_relative_input()
         self.handle_rotation()

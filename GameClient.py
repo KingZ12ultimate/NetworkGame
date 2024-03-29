@@ -28,7 +28,7 @@ class GameClient(ShowBase):
         self.camera.set_pos(0, -10, 5)
 
         d_light = DirectionalLight('dlight')
-        d_light.set_color((0.5, 0.8, 0.8, 1))
+        d_light.set_color((0.9, 0.9, 0.9, 1))
         dlnp = self.render.attach_new_node(d_light)
         dlnp.set_hpr(0, -60, 0)
         self.render.set_light(dlnp)
@@ -36,6 +36,7 @@ class GameClient(ShowBase):
         self.accept("client-ready", self.set_connected_message)
 
         self.title = self.add_title("Panda3D: Tutorial - Distributed Network (NOT CONNECTED)")
+        inst1 = self.add_instruction(0.06, "q: Quit")
 
         self.cr = GameClientRepository(self)
 
@@ -61,8 +62,6 @@ class GameClient(ShowBase):
                            text_pos=(0, -0.2))
         btn.set_transparency(1)
 
-        self.exitFunc = self.leave
-
     def join(self):
         self.main_menu.hide()
         self.main_menu_backdrop.hide()
@@ -79,9 +78,18 @@ class GameClient(ShowBase):
         self.accept_once("q", self.leave)
 
     def leave(self):
+        """ Leave the current level. """
         self.task_mgr.remove("update-task")
         self.camera_mgr = None
         self.cr.request_leave()
+
+        # bring back the main menu
+        self.main_menu_backdrop.show()
+        self.main_menu.show()
+
+    def quit(self):
+        """ Quit the application. """
+        self.cr.request_quit()
 
     def update(self, task):
         """The main task that will handle the client-side game logic"""
