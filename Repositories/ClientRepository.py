@@ -8,6 +8,7 @@ from panda3d.core import Vec2
 from GameManager.DGameManager import DGameManager
 from DistributedObjects.DPlayer import DPlayer
 from DistributedObjects.DLevel import DLevel
+from Globals import HOST, PORT
 
 
 class GameClientRepository(ClientRepository):
@@ -27,10 +28,10 @@ class GameClientRepository(ClientRepository):
 
         # Set the same port as configured on the server to be able to connect
         # to it
-        tcp_port = ConfigVariableInt("server port", 4400).get_value()
+        tcp_port = ConfigVariableInt("server port", PORT).get_value()
 
         # Set the IP or hostname of the server we want to connect to
-        host_name = ConfigVariableString("server host", "127.0.0.1").get_value()
+        host_name = ConfigVariableString("server host", HOST).get_value()
 
         # Build the URL from the server hostname and port. If your server
         # uses another protocol than http you should change it accordingly.

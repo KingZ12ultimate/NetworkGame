@@ -7,11 +7,7 @@
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
       <change beforePath="$PROJECT_DIR$/.idea/NetworkGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkGame.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AIRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ClientRepository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +173,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
       </set>
     </attachedChunks>
   </component>

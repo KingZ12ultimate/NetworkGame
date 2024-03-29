@@ -7,7 +7,7 @@ from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
 from GameManager.DGameManagerAI import DGameManagerAI
 from DistributedObjects.DPlayerAI import DPlayerAI
 from DistributedObjects.DLevelAI import DLevelAI
-from Globals import SERVER_MANAGERS, GAME_MANAGERS
+from Globals import SERVER_MANAGERS, GAME_MANAGERS, PORT
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -33,7 +33,7 @@ class AIRepository(ClientRepository):
         dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
-        tcp_port = ConfigVariableInt("server-port", 4400).get_value()
+        tcp_port = ConfigVariableInt("server-port", PORT).get_value()
         host_name = ConfigVariableString("server-host", "127.0.0.1").get_value()
 
         url = URLSpec("http://{}:{}".format(host_name, tcp_port))
