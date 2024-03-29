@@ -14,6 +14,7 @@ struct PlayerInput {
 dclass DGameManager: DistributedObject {
     request_join() p2p;
     request_leave(uint8 player_id) p2p;
+    request_quit() p2p;
     join_success(uint8 player_id) p2p;
     join_failure() p2p;
     left_success() p2p;
@@ -25,6 +26,7 @@ dclass DLevel: DistributedNode {
 
 dclass DPlayer: DistributedNode {
     send_input(PlayerInput p_input) p2p;
+    send_hpr(int16 % 360 / 10, int16 % 360 / 10, int16 % 360 / 10) p2p;
 };
 
 dclass DCherry: DistributedNode {

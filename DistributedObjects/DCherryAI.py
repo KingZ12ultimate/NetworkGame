@@ -22,7 +22,7 @@ class DCherryAI(DistributedNodeAI, BulletGhostNodeNP):
         size = box[1] - box[0]
         self.node().add_shape(BulletBoxShape(size))
 
-        self.air.world_np.attach_new_node(self)
+        self.reparent_to(self.air.world_np)
         self.air.world.attach(self.node())
         self.set_collide_mask(masks["player"])
         self.set_pos(pos)

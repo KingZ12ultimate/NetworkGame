@@ -82,3 +82,6 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         # Reset jump input if True
         if p_input[3]:
             global_input.set_jump_pressed(False)
+
+    def d_send_hpr(self, h, p, r):
+        self.sendUpdate("send_hpr", [h, p, r])
