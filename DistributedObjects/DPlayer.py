@@ -47,7 +47,8 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
             self.rotation_interval.start()
 
         # send hpr to all clients
-        self.d_setHpr(self.get_h(), self.get_p(), self.get_r())
+        hpr = self.model.get_hpr()
+        self.d_set_model_hpr(hpr.get_x(), hpr.get_y(), hpr.get_z())
 
     def update(self):
         self.move_input = self.get_relative_input()
@@ -71,6 +72,15 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         res.normalize()
         return res
 
+    def get_model_hpr(self):
+        return self.model.get_h(), self.model.get_p(), self.model.get_r()
+
+    def set_model_hpr(self, h, p, r):
+        self.model.set_hpr(h, p, r)
+
+    def d_set_model_hpr(self, h, p, r):
+        self.sendUpdate("set_model_hpr", [h, p, r])
+
     def d_send_input(self):
         """Converts player input to tuple and sends it to the AI server."""
         p_input = (self.move_input.get_x(),
@@ -82,6 +92,3 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         # Reset jump input if True
         if p_input[3]:
             global_input.set_jump_pressed(False)
-
-    def d_send_hpr(self, h, p, r):
-        self.sendUpdate("send_hpr", [h, p, r])

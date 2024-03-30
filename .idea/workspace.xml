@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ListOfClasses.dc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,34 +52,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.01_Basics.executor": "Run",
-    "Python.02_Shapes.executor": "Run",
-    "Python.03_Heightfield.executor": "Run",
-    "Python.17_Character.executor": "Run",
-    "Python.25_SoftbodyTetra.executor": "Run",
-    "Python.AIRepository.executor": "Debug",
-    "Python.Client.executor": "Run",
-    "Python.Game (1).executor": "Run",
-    "Python.Game.executor": "Run",
-    "Python.GameServer.executor": "Debug",
-    "Python.Helpers.executor": "Run",
-    "Python.Player.executor": "Run",
-    "Python.Server.executor": "Run",
-    "Python.SimpleThirdPersonCameraTester.executor": "Run",
-    "Python.Testi.executor": "Run",
-    "Python.TextureGenerator.executor": "Run",
-    "Python.character.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models",
-    "settings.editor.selected.configurable": "editor.preferences.completion"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
+    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AIRepository.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GameServer.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TextureGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="PyFindUsagesOptions">
     <option name="isSearchForTextOccurrences" value="true" />
   </component>
@@ -173,7 +174,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
       </set>
     </attachedChunks>
   </component>
@@ -282,23 +283,7 @@
       <option name="project" value="LOCAL‎" />
       <updated>1710440270432</updated>
     </task>
-    <task id="LOCAL‎-00013" summary="changes">
-      <option name="closed" value="true" />
-      <created>1711692302374</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL‎-00013" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1711692302374</updated>
-    </task>
-    <task id="LOCAL‎-00014" summary="changes">
-      <option name="closed" value="true" />
-      <created>1711700506831</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL‎-00014" />
-      <option name="project" value="LOCAL‎" />
-      <updated>1711700506831</updated>
-    </task>
-    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

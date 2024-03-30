@@ -3,7 +3,7 @@ from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32
 from panda3d.bullet import BulletRigidBodyNode
 
 
-HOST = '10.42.57.16'
+HOST = '127.0.0.1'
 PORT = 4400
 
 SERVER_MANAGERS = 1

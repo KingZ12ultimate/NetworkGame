@@ -26,7 +26,7 @@ dclass DLevel: DistributedNode {
 
 dclass DPlayer: DistributedNode {
     send_input(PlayerInput p_input) p2p;
-    send_hpr(int16 % 360 / 10, int16 % 360 / 10, int16 % 360 / 10) p2p;
+    set_model_hpr(int16 % 360 / 10, int16 % 360 / 10, int16 % 360 / 10) clsend broadcast;
 };
 
 dclass DCherry: DistributedNode {
