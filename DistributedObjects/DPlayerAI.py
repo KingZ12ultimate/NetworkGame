@@ -45,7 +45,6 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
 
         self.model = base.loader.load_model("models/panda")
         self.model.set_scale(0.2)
-        self.model.reparent_to(self)
         self.skin_width = 0.05
 
     def delete(self):
@@ -57,9 +56,6 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
         size = box[1] - box[0]
         radius = size.get_y() * 0.5 + self.skin_width
         height = size.get_z() - 2 * radius
-
-        # Reposition the model
-        self.model.set_z(-0.5 * height - radius)
 
         self.node().add_shape(BulletCapsuleShape(radius, height, Z_up))
 

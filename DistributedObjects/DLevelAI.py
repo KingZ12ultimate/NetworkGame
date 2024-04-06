@@ -39,5 +39,7 @@ class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
     def update(self):
         for cherry in self.cherries:
             if cherry.node().get_num_overlapping_nodes() > 0:
-                self.cherries.remove(cherry)
-                self.air.sendDeleteMsg(cherry.doId)
+                for node in cherry.node().get_overlapping_nodes():
+                    if node.get_name() == "Player":
+                        self.cherries.remove(cherry)
+                        self.air.sendDeleteMsg(cherry.doId)

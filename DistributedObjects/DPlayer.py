@@ -15,6 +15,12 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         self.model.set_scale(0.2)
         self.set_h(180)
         self.model.reparent_to(self)
+
+        # Reposition the model
+        box = self.model.get_tight_bounds()
+        size = box[1] - box[0]
+        self.model.set_z(-0.5 * size.get_z())
+
         self.input_space: NodePath = base.render
         # self.setCacheable(True)
 

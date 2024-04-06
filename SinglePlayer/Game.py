@@ -51,7 +51,7 @@ class Game(ShowBase):
         self.ground_np.node().add_shape(ground_shape)
         self.world.attach_rigid_body(self.ground_np.node())
 
-        ground_model = self.loader.load_model("Assets/floor.glb")
+        ground_model = self.loader.load_model("Models/floor.glb")
         ground_model.reparent_to(self.ground_np)
         ground_model.set_color(0.8, 0.8, 0.8, 1)
 
