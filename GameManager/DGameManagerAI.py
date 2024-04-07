@@ -33,6 +33,7 @@ class DGameManagerAI(DistributedObjectAI):
 
     def request_leave(self, player_id):
         player = self.air.doId2do[player_id]
+        self.players.remove(player)
         self.air.remove_player(player)
         self.air.sendDeleteMsg(player_id)
 

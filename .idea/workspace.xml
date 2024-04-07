@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/SinglePlayer/Ghost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherry.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ListOfClasses.dc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SinglePlayer/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +98,7 @@
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork\repositories" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Client">
     <configuration name="Client" type="PythonConfigurationType" factoryName="Python" singleton="false">
       <module name="NetworkGame" />
       <option name="ENV_FILES" value="" />
@@ -176,7 +174,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
       </set>
     </attachedChunks>
   </component>

@@ -26,7 +26,7 @@ class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
                 xy = (cell_size * (0.5 + x), cell_size * (0.5 + y))
                 pos = (offset + xy[0],
                        offset + xy[1],
-                       (self.height_map.get_gray(round(xy[0]), round(xy[1])) - 0.5) * self.height + 5)
+                       (self.height_map.get_gray(round(xy[0]), round(xy[1]))) * self.height + 5)
                 cherry = DCherryAI(self.air, pos)
                 self.cherries.append(cherry)
                 self.air.createDistributedObject(distObj=cherry, zoneId=self.zoneId)
