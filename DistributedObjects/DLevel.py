@@ -20,10 +20,11 @@ class DLevel(DistributedNode):
         self.terrain.set_focal_point(base.camera)
 
     def announceGenerate(self):
-        messenger.send(self.cr.uniqueName("LevelGenerated"), [self.doId])
         DistributedNode.announceGenerate(self)
+        self.cr.level = self
         self.terrain.generate()
         self.reparent_to(base.render)
+        messenger.send("level-ready")
 
     def delete(self):
         print("deleting level", self.doId)

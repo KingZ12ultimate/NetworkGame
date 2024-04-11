@@ -2,7 +2,7 @@
 from direct.showbase.ShowBase import ShowBase
 
 from Repositories.ClientRepository import GameClientRepository
-from direct.gui.DirectGui import *
+from GUI.MainMenu import MainMenu
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 from panda3d.core import TextNode, WindowProperties, Vec3, DirectionalLight
@@ -39,32 +39,13 @@ class GameClient(ShowBase):
         inst1 = self.add_instruction(0.06, "q: Quit")
 
         self.cr = GameClientRepository(self)
+        self.accept_once("join", self.join)
 
-        self.main_menu_backdrop = DirectFrame(frameColor=(0, 0, 0, 1),
-                                              frameSize=(-1, 1, -1, 1),
-                                              parent=self.render2d)
-        self.main_menu = DirectFrame(frameColor=(1, 1, 1, 0))
-        title1 = DirectLabel(text="PUSSY TIGHT",
-                             scale=0.3,
-                             pos=(0, 0, 0.7),
-                             parent=self.main_menu,
-                             relief=None,
-                             text_fg=(1, 1, 1, 1))
-
-        btn = DirectButton(text="Join Game",
-                           command=self.join,
-                           pos=(0, 0, 0.2),
-                           parent=self.main_menu,
-                           scale=0.1,
-                           frameSize=(-4, 4, -1, 1),
-                           text_scale=0.75,
-                           relief=DGG.FLAT,
-                           text_pos=(0, -0.2))
-        btn.set_transparency(1)
+        self.menu = MainMenu(self.render2d)
 
     def join(self):
-        self.main_menu.hide()
-        self.main_menu_backdrop.hide()
+        self.menu.main_menu.hide()
+        self.menu.main_menu_backdrop.hide()
         self.cr.request_join()
 
         def join_success():
@@ -84,12 +65,12 @@ class GameClient(ShowBase):
         self.cr.request_leave()
 
         # bring back the main menu
-        self.main_menu_backdrop.show()
-        self.main_menu.show()
+        self.menu.main_menu_backdrop.show()
+        self.menu.main_menu.show()
 
     def quit(self):
         """ Quit the application. """
-        self.cr.request_quit()
+        self.cr.quit()
 
     def update(self, task):
         """The main task that will handle the client-side game logic"""

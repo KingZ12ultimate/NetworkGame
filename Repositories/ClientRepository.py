@@ -5,7 +5,7 @@ from direct.showbase.MessengerGlobal import messenger
 from direct.distributed.ClientRepository import ClientRepository
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec2
-from GameManager.DGameManager import DGameManager
+from DistributedObjects.DLevelManager import DLevelManager
 from DistributedObjects.DPlayer import DPlayer
 from DistributedObjects.DLevel import DLevel
 from Globals import HOST, PORT
@@ -17,7 +17,7 @@ class GameClientRepository(ClientRepository):
         self.base = base
 
         # distributed objects for our game
-        self.game_mgr: DGameManager | None = None
+        self.level_manager: DLevelManager | None = None
         self.player: DPlayer | None = None
         self.level: DLevel | None = None
 
@@ -107,8 +107,6 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.accept(self.uniqueName("GameManagerGenerated"), self.game_mgr_generated)
-        self.accept(self.uniqueName("LevelGenerated"), self.level_generated)
         self.setInterestZones([1, 2])
 
         print("Client Ready")
@@ -119,33 +117,18 @@ class GameClientRepository(ClientRepository):
         self.player.d_send_input()
         self.level.terrain.update()
 
-    def game_mgr_generated(self, do_id):
-        print("Game manager generated: ", str(do_id))
-        self.game_mgr = self.doId2do[do_id]
-
-    def level_generated(self, do_id):
-        print("Level generated")
-        self.level = self.doId2do[do_id]
-        messenger.send("level-ready")
-
     def add_player(self, do_id):
         print("Player object generated: " + str(do_id))
         self.player = self.doId2do[do_id]
 
     def request_join(self):
-        if not self.game_mgr:
-            return
-
-        self.game_mgr.d_request_join()
+        self.level_manager.d_request_join()
 
     def request_leave(self):
-        if not self.game_mgr:
-            return
+        self.level_manager.d_request_leave(self.player.doId)
 
-        self.game_mgr.d_request_leave(self.player.doId)
+    def request_create_level(self):
+        self.level_manager.d_request_create_level()
 
-    def request_quit(self):
-        if not self.game_mgr:
-            return
-
-        self.game_mgr.d_request_quit()
+    def quit(self):
+        self.level_manager.d_request_quit()

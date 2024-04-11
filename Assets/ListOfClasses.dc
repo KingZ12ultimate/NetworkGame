@@ -1,4 +1,4 @@
-from GameManager.DGameManager/AI import DGameManager/AI
+from DistributedObjects.DLevelManager/AI import DLevelManager/AI
 from DistributedObjects.DLevel/AI import DLevel/AI
 from DistributedObjects.DPlayer/AI import DPlayer/AI
 from DistributedObjects.DCherry/AI import DCherry/AI
@@ -11,7 +11,7 @@ struct PlayerInput {
     uint8 jump;
 }
 
-dclass DGameManager: DistributedObject {
+dclass DLevelManager: DistributedObject {
     request_join() p2p;
     request_leave(uint16 player_id) p2p;
     request_quit() p2p;

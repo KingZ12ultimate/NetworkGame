@@ -2,13 +2,14 @@ from direct.distributed.DistributedObject import DistributedObject
 from direct.showbase.MessengerGlobal import messenger
 
 
-class DGameManager(DistributedObject):
+class DLevelManager(DistributedObject):
     def __init__(self, cr):
         DistributedObject.__init__(self, cr)
+        self.level_zone = -1
 
     def announceGenerate(self):
-        messenger.send(self.cr.uniqueName("GameManagerGenerated"), [self.doId])
         DistributedObject.announceGenerate(self)
+        self.cr.level_manager = self
 
     def delete(self):
         print("deleted")
@@ -19,6 +20,9 @@ class DGameManager(DistributedObject):
 
     def d_request_leave(self, player_id):
         self.sendUpdate("request_leave", [player_id])
+
+    def d_request_create_level(self):
+        pass
 
     def d_request_quit(self):
         self.sendUpdate("request_quit")

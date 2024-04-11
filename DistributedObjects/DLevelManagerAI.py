@@ -3,12 +3,13 @@ from panda3d.core import UniqueIdAllocator
 from Globals import MIN_LEVEL_ZONE, MAX_LEVEL_ZONE
 
 
-class DGameManagerAI(DistributedObjectAI):
+class DLevelManagerAI(DistributedObjectAI):
     MAX_PLAYERS = 2
 
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
         self.players = []
+        self.levels = []
 
     def announceGenerate(self):
         DistributedObjectAI.announceGenerate(self)

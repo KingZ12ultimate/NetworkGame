@@ -4,7 +4,7 @@ from direct.task.Task import Task
 from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from panda3d.core import Vec3
 from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
-from GameManager.DGameManagerAI import DGameManagerAI
+from DistributedObjects.DLevelManagerAI import DLevelManagerAI
 from DistributedObjects.DPlayerAI import DPlayerAI
 from DistributedObjects.DLevelAI import DLevelAI
 from Globals import SERVER_MANAGERS, GAME_MANAGERS, PORT
@@ -21,7 +21,7 @@ class AIRepository(ClientRepository):
         self.base = base
         self.update_task = None
         self.players = []
-        self.game_mgr: DGameManagerAI | None = None
+        self.game_mgr: DLevelManagerAI | None = None
         self.level: DLevelAI | None = None
 
         # Create the physics world
@@ -79,7 +79,7 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=SERVER_MANAGERS)
-        self.game_mgr = self.createDistributedObject(className='DGameManagerAI', zoneId=GAME_MANAGERS)
+        self.game_mgr = self.createDistributedObject(className='DLevelManagerAI', zoneId=GAME_MANAGERS)
 
         print("AI Repository Ready")
 
@@ -132,7 +132,7 @@ class AIRepository(ClientRepository):
 
         # Attaching the player to the world
         self.world.attach(player.node())
-        player.reparent_to(self.world_np)
+        # player.reparent_to(self.world_np)
 
         self.players.append(player)
 

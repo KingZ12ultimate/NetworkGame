@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/GUI/MainMenu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ListOfClasses.dc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager/DGameManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameManager/DGameManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelManagerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AIRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ClientRepository.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,11 +96,11 @@
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedObjects" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork\repositories" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Client">
@@ -174,7 +179,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
+        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
       </set>
     </attachedChunks>
   </component>
