@@ -49,6 +49,7 @@ class DPlayerAI(DistributedNodeAI, BulletRigidBodyNP):
 
     def delete(self):
         print("deleting player object AI", self.doId)
+        self.detach_node()
         DistributedNodeAI.delete(self)
 
     def add_collider(self):

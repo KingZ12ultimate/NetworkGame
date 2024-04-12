@@ -27,7 +27,19 @@ class DLevelManager(DistributedObject):
     def d_request_quit(self):
         self.sendUpdate("request_quit")
 
-    def join_success(self, player_id):
+    def join_success(self, join_params):
+        # fetch the parameters
+        i = 0
+        level_zone = join_params[i]
+        i += 1
+        level_id = join_params[i]
+        i += 1
+        player_id = join_params[i]
+
+        interest_zones = self.cr.interestZones
+        interest_zones.append(level_zone)
+        self.cr.setInterestZones(interest_zones)
+
         self.cr.add_player(player_id)
 
     def join_failure(self):

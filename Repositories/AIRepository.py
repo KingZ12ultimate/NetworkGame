@@ -7,7 +7,7 @@ from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
 from DistributedObjects.DLevelManagerAI import DLevelManagerAI
 from DistributedObjects.DPlayerAI import DPlayerAI
 from DistributedObjects.DLevelAI import DLevelAI
-from Globals import SERVER_MANAGERS, GAME_MANAGERS, PORT
+from Globals import SERVER_MANAGERS, LEVEL_MANAGER_ZONE, PORT
 
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -21,7 +21,7 @@ class AIRepository(ClientRepository):
         self.base = base
         self.update_task = None
         self.players = []
-        self.game_mgr: DLevelManagerAI | None = None
+        self.level_manager: DLevelManagerAI | None = None
         self.level: DLevelAI | None = None
 
         # Create the physics world
@@ -79,7 +79,7 @@ class AIRepository(ClientRepository):
         # Create a Distributed Object by name.  This will look up the object in
         # the dc files passed to the repository earlier
         self.timeManager = self.createDistributedObject(className='TimeManagerAI', zoneId=SERVER_MANAGERS)
-        self.game_mgr = self.createDistributedObject(className='DLevelManagerAI', zoneId=GAME_MANAGERS)
+        self.level_manager = self.createDistributedObject(className='DLevelManagerAI', zoneId=LEVEL_MANAGER_ZONE)
 
         print("AI Repository Ready")
 
