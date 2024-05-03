@@ -14,9 +14,8 @@ class GameServer(ShowBase):
         self.sr = GameServerRepository()
 
         # The AI Repository to manage server side (AI) clients
-        self.air = AIRepository(self)
+        self.air = AIRepository()
         simbase.air = self.air
-        self.task_mgr.add(self.air.update, "update-task")  # TODO: move this line somewhere else
 
 
 # start the server

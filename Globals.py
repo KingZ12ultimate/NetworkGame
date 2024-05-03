@@ -1,5 +1,5 @@
 import math
-from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32
+from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32, Thread
 from panda3d.bullet import BulletRigidBodyNode
 
 
@@ -16,8 +16,8 @@ GRAVITY = Vec3(0, 0, -9.81)
 
 
 masks = {
-    "player": BitMask32.bit(0),
-    "terrain": BitMask32.bit(1)
+    "terrain": BitMask32.bit(0),
+    "cherry": BitMask32.bit(1)
 }
 
 
@@ -74,3 +74,4 @@ def move_towards_angle(current, target, max_delta):
 class BulletRigidBodyNP(NodePath):
     def __init__(self, name: str):
         NodePath.__init__(self, BulletRigidBodyNode(name))
+        self.node()

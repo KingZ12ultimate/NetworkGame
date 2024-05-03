@@ -1,25 +1,18 @@
-# imports for the engine
-from direct.showbase.ShowBase import ShowBase
 from direct.showbase.MessengerGlobal import messenger
-
 from direct.distributed.ClientRepository import ClientRepository
-from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
-from panda3d.core import Vec2
+from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString, Vec2
 from DistributedObjects.DLevelManager import DLevelManager
-from DistributedObjects.DPlayer import DPlayer
-from DistributedObjects.DLevel import DLevel
-from Globals import HOST, PORT
+from Globals import HOST, PORT, SERVER_MANAGERS, LEVEL_MANAGER_ZONE
 
 
 class GameClientRepository(ClientRepository):
-    def __init__(self, base: ShowBase):
+    def __init__(self):
         dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
-        self.base = base
 
         # distributed objects for our game
         self.level_manager: DLevelManager | None = None
-        self.player: DPlayer | None = None
-        self.level: DLevel | None = None
+        self.local_level_id = None
+        self.local_player_id = None
 
         self.move_input = Vec2.zero()
         self.jump_pressed = False
@@ -69,7 +62,7 @@ class GameClientRepository(ClientRepository):
         # Make sure we have interest in the AIRepository defined
         # TimeManager zone, so we always see it even if we switch to
         # another zone.
-        self.setInterestZones([1])
+        self.setInterestZones([SERVER_MANAGERS])
 
         # We must wait for the TimeManager to be fully created and
         # synced before we can enter another zone and wait for the
@@ -107,28 +100,24 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
-        self.setInterestZones([1, 2])
+        self.setInterestZones([SERVER_MANAGERS, LEVEL_MANAGER_ZONE])
 
         print("Client Ready")
         messenger.send("client-ready")
 
     def update(self):
-        self.player.update()
-        self.player.d_send_input()
-        self.level.terrain.update()
+        level = self.doId2do[self.local_level_id]
+        player = self.doId2do[self.local_player_id]
 
-    def add_player(self, do_id):
-        print("Player object generated: " + str(do_id))
-        self.player = self.doId2do[do_id]
+        player.update()
+        player.d_send_input()
+        level.terrain.update()
 
-    def request_join(self):
-        self.level_manager.d_request_join()
+    def request_join(self, max_players):
+        self.level_manager.d_request_join(max_players)
 
     def request_leave(self):
-        self.level_manager.d_request_leave(self.player.doId)
-
-    def request_create_level(self):
-        self.level_manager.d_request_create_level()
+        self.level_manager.d_request_leave(self.local_level_id, self.local_player_id)
 
     def quit(self):
-        self.level_manager.d_request_quit()
+        self.sendDisconnect()

@@ -63,7 +63,7 @@ class Player:
         self.model.reparent_to(self.rigid_body_np)
         self.model.set_z(-0.5 * height - radius)
 
-        self.mask = BitMask32.bit(0)
+        self.mask = BitMask32.bit(0) | BitMask32.bit(1)
         self.rigid_body_np.set_collide_mask(self.mask)
         # self.rigid_body.set_deactivation_enabled(False)
 

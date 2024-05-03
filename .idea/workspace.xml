@@ -5,9 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
+      <change afterPath="$PROJECT_DIR$/Assets/Doozy.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Mousey.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedObjects/DActor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DistributedObjects/DActorAI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/UIButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/UIButtonDisabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/UIButtonHighlighted.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/UIButtonPressed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/health.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UI/stoneFrame.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/NetworkGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkGame.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ListOfClasses.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/BulletRigidBodyNP.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/ConnectionConstants.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameClient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameServer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/Models/panda.egg.pz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherry.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherry.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelManagerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/MainMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AIRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ClientRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ServerRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ServerRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SinglePlayer/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SinglePlayer/Ghost.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Ghost.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SinglePlayer/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +69,12 @@
     &quot;assignee&quot;: &quot;KingZ12ultimate&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="8faac2aa-f1c2-441d-a2a0-fc5bfa99e05a" />
-        <option name="url" value="https://github.com/KingZ12ultimate/NetworkGame.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KingZ12ultimate/NetworkGame.git&quot;,
+    &quot;accountId&quot;: &quot;5346f99e-39bf-4c74-8eaf-b43586860fc9&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -50,42 +86,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.01_Basics.executor": "Run",
-    "Python.02_Shapes.executor": "Run",
-    "Python.03_Heightfield.executor": "Run",
-    "Python.17_Character.executor": "Run",
-    "Python.25_SoftbodyTetra.executor": "Run",
-    "Python.AIRepository.executor": "Debug",
-    "Python.Client.executor": "Run",
-    "Python.Game (1).executor": "Run",
-    "Python.Game.executor": "Run",
-    "Python.GameServer.executor": "Run",
-    "Python.Helpers.executor": "Run",
-    "Python.Player.executor": "Run",
-    "Python.Server.executor": "Run",
-    "Python.SimpleThirdPersonCameraTester.executor": "Run",
-    "Python.Testi.executor": "Run",
-    "Python.TextureGenerator.executor": "Run",
-    "Python.character.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/AMIT.DESKTOP-O006H9P/PycharmProjects/NetworkGame/DirectClientServer/Models",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.01_Basics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.02_Shapes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.03_Heightfield.executor&quot;: &quot;Run&quot;,
+    &quot;Python.17_Character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.25_SoftbodyTetra.executor&quot;: &quot;Run&quot;,
+    &quot;Python.AIRepository.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.Game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GameServer.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.Ghost.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Globals.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Helpers.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SimpleThirdPersonCameraTester.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Testi.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TextureGenerator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.WaitingScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.viewer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/PycharmProjects/Panda3DTutorial&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="PyFindUsagesOptions">
     <option name="isSearchForTextOccurrences" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
       <recent name="C:\Users\AMIT.DESKTOP-O006H9P\PycharmProjects\NetworkGame\DirectClientServer\Models" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -96,83 +137,10 @@
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Client" type="PythonConfigurationType" factoryName="Python" singleton="false">
-      <module name="NetworkGame" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="GameClient" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Game" type="PythonConfigurationType" factoryName="Python">
-      <module name="NetworkGame" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="Game" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Server" type="PythonConfigurationType" factoryName="Python">
-      <module name="NetworkGame" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="GameServer" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="true" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.Client" />
-      <item itemvalue="Python.Game" />
-      <item itemvalue="Python.Server" />
-    </list>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
+        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
       </set>
     </attachedChunks>
   </component>

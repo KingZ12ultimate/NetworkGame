@@ -1,38 +1,75 @@
+import math
+
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from panda3d.core import Filename, PNMImage, NodePath, Vec3
-from panda3d.bullet import BulletWorld
+from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
 from Globals import BulletRigidBodyNP, masks, GRAVITY
 from DistributedObjects.DCherryAI import DCherryAI
 
 
-class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
+class DLevelAI(DistributedNodeAI):
     SIZE = 1024
     NUM_CHERRIES_PER_ROW = 20
 
-    def __init__(self, air, max_players, level_zone):
+    def __init__(self, air, max_players):
         DistributedNodeAI.__init__(self, air)
-        BulletRigidBodyNP.__init__(self, "Terrain")
 
+        # level properties
         self.max_players = max_players
         self.players = []
-        self.level_zone = level_zone
+        self.player_models = {
+            "Assets/Doozy.glb": False,
+            "Assets/Mousey.glb": False,
+            "models/panda.egg": False,
+            "models/frowney": False
+        }
 
+        # physics
         self.world = BulletWorld()
         self.world.set_gravity(GRAVITY)
         self.world_np = NodePath("Physics-World")  # the root node of the level's physics world
 
-        self.set_collide_mask(masks["terrain"])
         self.cherries: list[DCherryAI] = []
 
-        self.height_map = PNMImage(Filename("Assets/HeightMap.png"))
+        # terrain properties
         self.height = 10
+        self.height_map = PNMImage(Filename("Assets/HeightMap.png"))
+        self.terrain_rigidbody_np = BulletRigidBodyNP("Terrain")
+
+        collider = BulletHeightfieldShape(self.height_map, self.height, Z_up)
+        self.terrain_rigidbody_np.node().add_shape(collider)
+        self.terrain_rigidbody_np.set_collide_mask(masks["terrain"])
+        self.world.attach(self.terrain_rigidbody_np.node())
+
+        base.task_mgr.add(self.can_start, "can-start-level")
+        self.update_task = None
 
     def delete(self):
+        self.update_task.remove()
+        self.air.level_zone_allocator.free(self.zoneId)
+
+        for player in self.players:
+            self.air.sendDeleteMsg(player.doId)
         self.players = []
+
+        for cherry in self.cherries:
+            self.air.sendDeleteMsg(cherry.doId)
+        self.cherries = []
+
         DistributedNodeAI.delete(self)
 
     def can_join(self):
+        """Returns whether players can still join the level"""
         return len(self.players) < self.max_players
+
+    def can_start(self, task):
+        if self.can_join():
+            return task.cont
+        for player in self.players:
+            if not player.ready:
+                return task.cont
+        self.d_start_level()
+        return task.done
 
     def add_player(self, player):
         # Adding a collider
@@ -54,23 +91,53 @@ class DLevelAI(DistributedNodeAI, BulletRigidBodyNP):
     def remove_player(self, player_id):
         for p in self.players:
             if p.doId == player_id:
+                self.player_models[p.model_path] = False
                 self.players.remove(p)
                 self.world.remove(p.node())
                 self.air.sendDeleteMsg(player_id)
 
-    def generate_cherries(self):
-        cell_size = self.SIZE / self.NUM_CHERRIES_PER_ROW
-        offset = -512
-        for y in range(self.NUM_CHERRIES_PER_ROW):
-            for x in range(self.NUM_CHERRIES_PER_ROW):
-                xy = (cell_size * (0.5 + x), cell_size * (0.5 + y))
-                pos = (offset + xy[0],
-                       offset + xy[1],
-                       (self.height_map.get_gray(round(xy[0]), round(xy[1]))) * self.height + 5)
-                cherry = DCherryAI(self.air, self, pos)
-                self.cherries.append(cherry)
-                self.air.createDistributedObject(distObj=cherry, zoneId=self.zoneId)
+    def d_start_level(self):
+        for player in self.players:
+            player.d_set_model()
+        self.generate_cherries(cherry_height=4)
+        self.update_task = base.task_mgr.add(
+            self.update,
+            "level-update-" + str(self.doId)
+        )
+        self.sendUpdate("start_level")
 
-    def update(self):
+    def update(self, task):
+        dt = base.clock.get_dt()
+
+        for player in self.players:
+            player.update(dt)
+
         for cherry in self.cherries:
             cherry.update()
+
+        self.world.do_physics(dt)
+
+        for player in self.players:
+            pos = player.get_pos()
+            player.d_setPos(pos.get_x(), pos.get_y(), pos.get_z())
+
+        return task.cont
+
+    def generate_cherries(self, cherry_height):
+        cell_size = self.SIZE / self.NUM_CHERRIES_PER_ROW
+        size = self.height_map.get_size()
+        offset = -size.get_x() * 0.5
+        for y in range(self.NUM_CHERRIES_PER_ROW):
+            for x in range(self.NUM_CHERRIES_PER_ROW):
+                cx = cell_size * (0.5 + x)
+                cy = cell_size * (0.5 + y)
+                cz = self.height_map.get_gray(
+                    math.floor(cx),
+                    size.get_y() - math.floor(cy)
+                )
+                cx += offset
+                cy += offset
+                cz = (cz - 0.5) * self.height + cherry_height
+                cherry = DCherryAI(self.air, self, (cx, cy, cz))
+                self.cherries.append(cherry)
+                self.air.createDistributedObject(distObj=cherry, zoneId=self.zoneId)

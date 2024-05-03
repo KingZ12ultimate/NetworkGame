@@ -1,41 +1,27 @@
-from direct.distributed.DistributedNode import DistributedNode
 from direct.interval.LerpInterval import LerpQuatInterval
+from DistributedObjects.DActor import DActor
 from panda3d.core import Vec3, NodePath, Quat
-from Globals import BulletRigidBodyNP
 from Input import global_input
 from math import atan2, sin, cos
 
 
-class DPlayer(DistributedNode, BulletRigidBodyNP):
+class DPlayer(DActor):
     def __init__(self, cr):
-        DistributedNode.__init__(self, cr)
-        BulletRigidBodyNP.__init__(self, "Player")
-
-        self.model = base.loader.load_model("models/panda")
-        self.model.set_scale(0.2)
-        self.set_h(180)
-        self.model.reparent_to(self)
-
-        # Reposition the model
-        box = self.model.get_tight_bounds()
-        size = box[1] - box[0]
-        self.model.set_z(-0.5 * size.get_z())
+        DActor.__init__(self, cr)
 
         self.input_space: NodePath = base.render
-        # self.setCacheable(True)
-
         self.move_input = Vec3(0, 0, 0)
         self.rotation_duration = 0.2
         self.rotation_interval = None
 
     def announceGenerate(self):
-        DistributedNode.announceGenerate(self)
+        DActor.announceGenerate(self)
         self.reparent_to(base.render)
+        print("Player generated")
 
     def delete(self):
         print("deleting player object", self.doId)
-        self.detach_node()
-        DistributedNode.delete(self)
+        DActor.delete(self)
 
     def handle_rotation(self):
         if self.rotation_interval is not None:
@@ -43,9 +29,10 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
                 return
 
         if self.move_input != 0:
-            angle = atan2(self.move_input.get_x(), self.move_input.get_y())
+            move = -self.move_input
+            angle = atan2(move.get_x(), move.get_y())
             target_rotation = Quat(cos(angle / 2.0), 0, 0, -sin(angle / 2.0))
-            self.rotation_interval = LerpQuatInterval(nodePath=self.model,
+            self.rotation_interval = LerpQuatInterval(nodePath=self.actor,
                                                       duration=self.rotation_duration,
                                                       quat=target_rotation,
                                                       blendType="easeInOut",
@@ -53,7 +40,7 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
             self.rotation_interval.start()
 
         # send hpr to all clients
-        hpr = self.model.get_hpr()
+        hpr = self.actor.get_hpr()
         self.d_set_model_hpr(hpr.get_x(), hpr.get_y(), hpr.get_z())
 
     def update(self):
@@ -79,13 +66,22 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         return res
 
     def get_model_hpr(self):
-        return self.model.get_h(), self.model.get_p(), self.model.get_r()
+        return self.actor.get_h(), self.actor.get_p(), self.actor.get_r()
 
     def set_model_hpr(self, h, p, r):
-        self.model.set_hpr(h, p, r)
+        self.actor.set_hpr(h, p, r)
 
     def d_set_model_hpr(self, h, p, r):
         self.sendUpdate("set_model_hpr", [h, p, r])
+
+    def set_model(self, model_path):
+        self.actor.load_model(model_path)
+        self.actor.set_scale(2.0)
+
+        # Reposition the model
+        box = self.actor.get_tight_bounds()
+        size = box[1] - box[0]
+        self.actor.set_z(-0.5 * size.get_z())
 
     def d_send_input(self):
         """Converts player input to tuple and sends it to the AI server."""
@@ -98,3 +94,6 @@ class DPlayer(DistributedNode, BulletRigidBodyNP):
         # Reset jump input if True
         if p_input[3]:
             global_input.set_jump_pressed(False)
+
+    def d_ready(self):
+        self.sendUpdate("set_ready")

@@ -1,11 +1,11 @@
-# imports for the engine
-from direct.showbase.ShowBase import ShowBase
+import simplepbr
 
+from direct.showbase.ShowBase import ShowBase
 from Repositories.ClientRepository import GameClientRepository
 from GUI.MainMenu import MainMenu
 from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
-from panda3d.core import TextNode, WindowProperties, Vec3, DirectionalLight
+from panda3d.core import TextNode, WindowProperties, Vec3, DirectionalLight, AmbientLight
 from Camera import Camera
 
 GRAVITY = Vec3(0, 0, -9.81)
@@ -25,42 +25,41 @@ class GameClient(ShowBase):
         self.disable_mouse()
         self.render.set_shader_auto()
 
-        self.camera.set_pos(0, -10, 5)
+        pipeline = simplepbr.init()
+        pipeline.use_normal_maps = True
+        pipeline.enable_shadows = True
 
-        d_light = DirectionalLight('dlight')
+        self.update_task = None
+
+        d_light = DirectionalLight('d_light')
         d_light.set_color((0.9, 0.9, 0.9, 1))
         dlnp = self.render.attach_new_node(d_light)
         dlnp.set_hpr(0, -60, 0)
         self.render.set_light(dlnp)
+
+        a_light = AmbientLight('a_light')
+        a_light.set_color((0.5, 0.5, 0.5, 1))
+        alnp = self.render.attach_new_node(a_light)
+        self.render.set_light(alnp)
 
         self.accept("client-ready", self.set_connected_message)
 
         self.title = self.add_title("Panda3D: Tutorial - Distributed Network (NOT CONNECTED)")
         inst1 = self.add_instruction(0.06, "q: Quit")
 
-        self.cr = GameClientRepository(self)
-        self.accept_once("join", self.join)
+        self.cr = GameClientRepository()
+        self.accept("join", self.join)
 
         self.menu = MainMenu(self.render2d)
 
-    def join(self):
-        self.menu.main_menu.hide()
-        self.menu.main_menu_backdrop.hide()
-        self.cr.request_join()
-
-        def join_success():
-            self.camera_mgr = Camera(self.camera, self.cr.player, 40, 10, 0.75)
-            self.cr.player.set_input_space(self.camera)
-            self.task_mgr.add(self.update, "update-task")
-            self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
-                                  + str(self.cr.player.doId))
-
-        self.accept("level-ready", join_success)
+    def join(self, max_players):
+        self.cr.request_join(max_players)
+        self.accept("start-level", self.start_level)
         self.accept_once("q", self.leave)
 
     def leave(self):
         """ Leave the current level. """
-        self.task_mgr.remove("update-task")
+        self.update_task.remove()
         self.camera_mgr = None
         self.cr.request_leave()
 
@@ -71,6 +70,18 @@ class GameClient(ShowBase):
     def quit(self):
         """ Quit the application. """
         self.cr.quit()
+
+    def start_level(self):
+        player = self.cr.doId2do[self.cr.local_player_id]
+
+        self.camera_mgr = Camera(self.camera, player, 40, 10, 0.75)
+        player.set_input_space(self.camera)
+        self.update_task = self.task_mgr.add(self.update, "update-task")
+        self.title["text"] = ("Panda3D: Tutorial - Distributed Network (CONNECTED) | ID = "
+                              + str(self.cr.local_player_id))
+
+        self.menu.waiting_dialog.hide()
+        self.menu.main_menu_backdrop.hide()
 
     def update(self, task):
         """The main task that will handle the client-side game logic"""

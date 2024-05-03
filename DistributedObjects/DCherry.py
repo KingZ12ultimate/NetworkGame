@@ -17,5 +17,5 @@ class DCherry(DistributedNode):
         self.sendUpdate("request_pos")
 
     def delete(self):
-        self.detach_node()
+        self.remove_node()
         DistributedNode.delete(self)

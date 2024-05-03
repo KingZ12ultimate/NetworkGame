@@ -12,7 +12,7 @@ class GameServerRepository(ServerRepository):
         tcp_port = ConfigVariableInt("server-port", 4400).get_value()
 
         # list of all required .dc files
-        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]  # May add my own .dc file.
+        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
 
         # initialize a threaded server on this machine with
         # the port number and the .dc filenames
