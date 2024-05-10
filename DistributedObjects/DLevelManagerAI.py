@@ -70,6 +70,9 @@ class DLevelManagerAI(DistributedObjectAI):
             self.levels
         )
         found_level = next(matching_levels, None)
+        if not found_level:
+            print("leave request from a non-existent level")
+            return
         found_level.remove_player(player_id)
 
         # remove the level from the list if there are no players left
@@ -94,7 +97,3 @@ class DLevelManagerAI(DistributedObjectAI):
 
         self.levels.append(new_level)
         return new_level
-
-    def request_quit(self):
-        requester_id = self.air.getAvatarIdFromSender()
-        self.sendUpdateToAvatarId(requester_id, "left_success", [])

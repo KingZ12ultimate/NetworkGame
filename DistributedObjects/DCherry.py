@@ -4,7 +4,7 @@ from direct.distributed.DistributedNode import DistributedNode
 class DCherry(DistributedNode):
     def __init__(self, cr):
         DistributedNode.__init__(self, cr)
-        self.model = base.loader.load_model("models/frowney")
+        self.model = base.loader.load_model("Assets/Models/cherries.glb")
 
         self.model.reparent_to(self)
         box = self.model.get_tight_bounds()

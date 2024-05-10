@@ -1,18 +1,17 @@
 import random
 
 from DistributedObjects.DActorAI import DActorAI
-from direct.showbase.MessengerGlobal import messenger
 from direct.fsm.FSM import FSM
 from panda3d.bullet import BulletCapsuleShape, Z_up
 from panda3d.core import Vec3
 from math import cos, radians
-from Globals import BulletRigidBodyNP, masks
+from Globals import BulletRigidBodyNP, masks, player_model_scale
 
 
 class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
     """ Player distributed object that resides on the AI server side.
      Responsible for gathering data from player, process it and send results back. """
-    def __init__(self, air, level, model_path, max_speed=15.0):
+    def __init__(self, air, level, model_path, max_speed=20.0):
         DActorAI.__init__(self, air)
         BulletRigidBodyNP.__init__(self, "Player")
         FSM.__init__(self, "Player")
@@ -53,8 +52,14 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
         self.set_collide_mask(masks["terrain"] | masks["cherry"])
 
         self.model = base.loader.load_model(model_path)
-        self.model.set_scale(2.0)
+        self.model.set_scale(player_model_scale)
         self.skin_width = 0.05
+
+        self.score = 0
+
+    def announceGenerate(self):
+        DActorAI.announceGenerate(self)
+        self.node().set_name(self.node().get_name() + "-" + str(self.doId))
 
     def delete(self):
         print("deleting player object AI", self.doId)
@@ -70,6 +75,11 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
     def enterRun(self):
         self.state_update_func = self.run_update
         self.d_loop("Run")
+        self.d_play_sound("run")
+
+    def exitRun(self):
+        self.d_stop_sound("run")
+        self.defaultExit()
 
     def enterJump(self):
         self.state_update_func = self.jump_update
@@ -105,6 +115,7 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
                 self.request("Run")
     # endregion
 
+    # region Physics
     def add_collider(self):
         box = self.model.get_tight_bounds()
         size = box[1] - box[0]
@@ -168,6 +179,7 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
         self.node().set_linear_velocity(self.velocity)
         self.clear_state()
         self.evaluate_collisions()
+    # endregion
 
     def set_ready(self):
         self.ready = True
@@ -176,7 +188,16 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
         """Receives player input"""
         self.move_input = Vec3(p_input[0], p_input[1], p_input[2])
         self.jump_pressed = p_input[3]
-        messenger.send("received-input-" + str(self.doId))
 
     def d_set_model(self):
         self.sendUpdate("set_model", [self.model_path])
+
+    def d_add_score(self, value):
+        self.score += value
+        self.sendUpdate("set_score", [self.doId, self.score])
+
+    def d_play_sound(self, name):
+        self.sendUpdate("play_sound", [name])
+
+    def d_stop_sound(self, name):
+        self.sendUpdate("stop_sound", [name])

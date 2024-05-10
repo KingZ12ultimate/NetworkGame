@@ -1,8 +1,12 @@
+import itertools
+
 import simplepbr
 
 from direct.showbase.ShowBase import ShowBase
 from direct.actor.Actor import Actor
-from panda3d.core import UniqueIdAllocator
+from direct.gui.DirectGui import *
+from direct.gui.OnscreenText import OnscreenText
+from panda3d.core import TextNode, ConfigVariableString
 
 
 class Game(ShowBase):
@@ -12,10 +16,12 @@ class Game(ShowBase):
         self.disable_mouse()
         self.render.set_shader_auto()
 
+        print(ConfigVariableString("server-host"))
+
         simplepbr.init()
 
         self.camera.set_pos(0, -10, 10)
-        self.player = Actor("Assets/Doozy.glb")
+        self.player = Actor("Assets/Models/Doozy.glb")
         self.player.reparent_to(self.render)
 
         self.map = {
@@ -36,14 +42,57 @@ class Game(ShowBase):
 
         self.task_mgr.add(self.update)
 
-        self.allocator = UniqueIdAllocator(1000, 1200)
-        for i in range(200):
-            print(self.allocator.allocate(), end=', ')
-        print()
-        for i in range(1000, 1100):
-            self.allocator.free(i)
+        player_ids = [1, 2, 3, 4]
+        score_text = {}
+        for i, id in enumerate(player_ids):
+            score_text[id] = OnscreenText(text="Player {}: {}".format(id, 0),
+                                          parent=self.a2dTopLeft,
+                                          pos=(0, -0.08 - i * 0.1),
+                                          align=TextNode.ALeft)
 
-            print(self.allocator.allocate(), end=', ')
+        self.button_images = (
+            self.loader.load_texture("UI/UIButton.png"),
+            self.loader.load_texture("UI/UIButtonPressed.png"),
+            self.loader.load_texture("UI/UIButtonHighlighted.png"),
+            self.loader.load_texture("UI/UIButtonDisabled.png")
+        )
+
+        self.dialog = DirectDialog(frameSize=(-0.8, 0.8, -0.7, 0.7),
+                                   fadeScreen=0.4,
+                                   relief=DGG.FLAT,
+                                   frameTexture="UI/stoneFrame.png")
+
+        title = DirectLabel(text="Instructions",
+                            parent=self.dialog,
+                            scale=0.2,
+                            pos=(0, 0, 0.47),
+                            relief=None)
+
+        self.instructions = [
+            self.add_instruction(0, "Use arrow keys to move the camera"),
+            self.add_instruction(0.1, "Use \"space\" key to jump"),
+            self.add_instruction(0.2, "Use \"WASD\" keys to move"),
+            self.add_instruction(0.3, "Be the first to grab {} cherries!".format(30))
+        ]
+
+        btn = DirectButton(text="OK!",
+                           command=self.dialog.hide,
+                           pos=(0, 0, -0.4),
+                           parent=self.dialog,
+                           scale=0.1,
+                           frameSize=(-2, 2, -1, 1),
+                           frameTexture=self.button_images,
+                           text_scale=0.75,
+                           relief=DGG.GROOVE,
+                           text_pos=(0, -0.2))
+        btn.set_transparency(1)
+
+    def add_instruction(self, pos, msg):
+        return DirectLabel(text=msg,
+                           parent=self.dialog,
+                           scale=0.08,
+                           pos=(0, 0, 0.35 - pos),
+                           relief=None)
 
     def update_map(self, key, value):
         self.map[key] = value

@@ -5,28 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2967f38f-aa33-4903-9cb1-6ca1e20839f8" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/Assets/Doozy.glb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Mousey.glb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedObjects/DActor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DistributedObjects/DActorAI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/UIButton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/UIButtonDisabled.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/UIButtonHighlighted.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/UIButtonPressed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/health.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/UI/stoneFrame.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/NetworkGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NetworkGame.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Models/cherries.glb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/UI_click.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/gameplay_music.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/item_pickup.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/menu_music.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sounds/running_sound.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/grass_texture.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ListOfClasses.dc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/BulletRigidBodyNP.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/CPlayer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/ConnectionConstants.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameClient.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/GameServer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/Models/panda.egg.pz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirectClientServer/SPlayer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Doozy.glb" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Doozy.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HeightMap.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/HeightMap.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ListOfClasses.dc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Interface.dc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mousey.glb" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Mousey.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/floor.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ground.glb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherry.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherry.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DCherryAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevel.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevel.py" afterDir="false" />
@@ -35,17 +28,13 @@
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DLevelManagerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DLevelManagerAI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedObjects/DPlayerAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/MainMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainMenu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/MainMenu.py" beforeDir="false" afterPath="$PROJECT_DIR$/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GameClient.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameClient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameServer.py" beforeDir="false" afterPath="$PROJECT_DIR$/GameServer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Globals.py" beforeDir="false" afterPath="$PROJECT_DIR$/Globals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/AIRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/AIRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/ClientRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ClientRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/ServerRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ServerRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SinglePlayer/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SinglePlayer/Ghost.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Ghost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SinglePlayer/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/SinglePlayer/Player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,12 +99,13 @@
     &quot;Python.TextureGenerator.executor&quot;: &quot;Run&quot;,
     &quot;Python.WaitingScreen.executor&quot;: &quot;Run&quot;,
     &quot;Python.character.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.viewer.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/PycharmProjects/Panda3DTutorial&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/roee/PycharmProjects/NetworkGame/Assets/Sounds&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
@@ -124,17 +114,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Assets\Sounds" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
       <recent name="C:\Users\AMIT.DESKTOP-O006H9P\PycharmProjects\NetworkGame\DirectClientServer\Models" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedObjects" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Assets\Sounds" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Assets\Textures" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\Assets\Models" />
       <recent name="C:\Users\roee\PycharmProjects\NetworkGame" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\SinglePlayer" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\distributedNetwork" />
-      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedNetwork" />
+      <recent name="C:\Users\roee\PycharmProjects\NetworkGame\DistributedObjects" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -257,7 +248,15 @@
       <option name="project" value="LOCAL‎" />
       <updated>1711826979083</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL‎-00014" summary="changes">
+      <option name="closed" value="true" />
+      <created>1714722876417</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL‎-00014" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1714722876417</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

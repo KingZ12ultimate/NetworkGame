@@ -1,5 +1,5 @@
 import math
-from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32, Thread
+from panda3d.core import Point3, Vec3, Quat, NodePath, BitMask32
 from panda3d.bullet import BulletRigidBodyNode
 
 
@@ -10,11 +10,10 @@ SERVER_MANAGERS = 1
 LEVEL_MANAGER_ZONE = 2
 MIN_LEVEL_ZONE = 1000
 MAX_LEVEL_ZONE = 2000
-MIN_LEVEL_ID = 1000
-IDS_PER_LEVEL = 500
 GRAVITY = Vec3(0, 0, -9.81)
+CHERRIES_TO_WIN = 10
 
-
+player_model_scale = 3.0
 masks = {
     "terrain": BitMask32.bit(0),
     "cherry": BitMask32.bit(1)

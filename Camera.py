@@ -8,7 +8,7 @@ from Input import global_input
 
 class Camera:
     def __init__(self, camera: NodePath, focus: NodePath, distance, focus_radius,
-                 focus_centering=0.5, rotation_speed=90, min_pitch=-30, max_pitch=60,
+                 focus_centering=0.5, rotation_speed=90, min_pitch=15, max_pitch=60,
                  align_delay=5, align_smooth_range=45):
         self.cam = camera
 

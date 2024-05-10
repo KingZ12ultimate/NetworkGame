@@ -12,7 +12,7 @@ class AIRepository(ClientRepository):
         self.level_zone_allocator = None
 
         # Getting ready to establish a connection
-        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
+        dc_file_names = ["Assets/direct.dc", "Assets/Interface.dc"]
         ClientRepository.__init__(self, dcFileNames=dc_file_names, dcSuffix="AI", threadedNet=True)
 
         tcp_port = ConfigVariableInt("server-port", PORT).get_value()

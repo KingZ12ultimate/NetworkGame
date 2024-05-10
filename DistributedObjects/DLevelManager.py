@@ -10,6 +10,7 @@ class DLevelManager(DistributedObject):
     def announceGenerate(self):
         DistributedObject.announceGenerate(self)
         self.cr.level_manager = self
+        messenger.send(self.cr.uniqueName("Level-Manager-Ready"))
 
     def delete(self):
         print("Level manager deleted")
@@ -20,16 +21,13 @@ class DLevelManager(DistributedObject):
 
     def d_request_leave(self, level_id, player_id):
         self.sendUpdate("request_leave", [level_id, player_id])
-        self.cr.sendDeleteMsg(self.cr.player.doId)
-        self.cr.sendDeleteMsg(self.cr.level.doId)
+        self.cr.sendDeleteMsg(player_id)
+        self.cr.sendDeleteMsg(level_id)
 
         interest_zones = self.cr.interestZones
         interest_zones.remove(self.level_zone)
         self.cr.setInterestZones(interest_zones)
         self.level_zone = -1
-
-    def d_request_quit(self):
-        self.sendUpdate("request_quit")
 
     def join_success(self, join_params):
         # fetch the parameters
@@ -58,6 +56,3 @@ class DLevelManager(DistributedObject):
         self.cr.player = self.cr.doId2do[self.cr.local_player_id]
         self.cr.player.d_ready()
         print("Level manifested")
-
-    def left_success(self):
-        self.delete()

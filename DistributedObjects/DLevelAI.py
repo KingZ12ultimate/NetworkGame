@@ -3,7 +3,7 @@ import math
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
 from panda3d.core import Filename, PNMImage, NodePath, Vec3
 from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
-from Globals import BulletRigidBodyNP, masks, GRAVITY
+from Globals import BulletRigidBodyNP, GRAVITY, CHERRIES_TO_WIN, masks
 from DistributedObjects.DCherryAI import DCherryAI
 
 
@@ -18,8 +18,8 @@ class DLevelAI(DistributedNodeAI):
         self.max_players = max_players
         self.players = []
         self.player_models = {
-            "Assets/Doozy.glb": False,
-            "Assets/Mousey.glb": False,
+            "Assets/Models/Doozy.glb": False,
+            "Assets/Models/Mousey.glb": False,
             "models/panda.egg": False,
             "models/frowney": False
         }
@@ -33,7 +33,7 @@ class DLevelAI(DistributedNodeAI):
 
         # terrain properties
         self.height = 10
-        self.height_map = PNMImage(Filename("Assets/HeightMap.png"))
+        self.height_map = PNMImage(Filename("Assets/Textures/HeightMap.png"))
         self.terrain_rigidbody_np = BulletRigidBodyNP("Terrain")
 
         collider = BulletHeightfieldShape(self.height_map, self.height, Z_up)
@@ -43,9 +43,12 @@ class DLevelAI(DistributedNodeAI):
 
         base.task_mgr.add(self.can_start, "can-start-level")
         self.update_task = None
+        self.is_running = False
 
     def delete(self):
-        self.update_task.remove()
+        if self.update_task is not None:
+            self.update_task.remove()
+
         self.air.level_zone_allocator.free(self.zoneId)
 
         for player in self.players:
@@ -60,7 +63,7 @@ class DLevelAI(DistributedNodeAI):
 
     def can_join(self):
         """Returns whether players can still join the level"""
-        return len(self.players) < self.max_players
+        return len(self.players) < self.max_players and not self.is_running
 
     def can_start(self, task):
         if self.can_join():
@@ -97,19 +100,29 @@ class DLevelAI(DistributedNodeAI):
                 self.air.sendDeleteMsg(player_id)
 
     def d_start_level(self):
+        self.is_running = True
+        ids = []
         for player in self.players:
             player.d_set_model()
+            ids.append(player.doId)
         self.generate_cherries(cherry_height=4)
         self.update_task = base.task_mgr.add(
             self.update,
             "level-update-" + str(self.doId)
         )
-        self.sendUpdate("start_level")
+        self.sendUpdate("start_level", [ids])
+
+    def d_end_level(self):
+        self.sendUpdate("end_level")
 
     def update(self, task):
+        # Once a player collected enough cherries, end the level
         dt = base.clock.get_dt()
 
         for player in self.players:
+            if player.score >= CHERRIES_TO_WIN:
+                self.d_end_level()
+                return task.done
             player.update(dt)
 
         for cherry in self.cherries:
@@ -141,3 +154,9 @@ class DLevelAI(DistributedNodeAI):
                 cherry = DCherryAI(self.air, self, (cx, cy, cz))
                 self.cherries.append(cherry)
                 self.air.createDistributedObject(distObj=cherry, zoneId=self.zoneId)
+
+    def remove_cherry(self, cherry_id):
+        for c in self.cherries:
+            if c.doId == cherry_id:
+                self.cherries.remove(c)
+                self.world.remove(c.node())

@@ -6,13 +6,18 @@ from Globals import HOST, PORT, SERVER_MANAGERS, LEVEL_MANAGER_ZONE
 
 
 class GameClientRepository(ClientRepository):
-    def __init__(self):
-        dc_file_names = ["Assets/direct.dc", "Assets/ListOfClasses.dc"]
+    def __init__(self, ready_command, ready_command_args, failed_command, failed_command_args):
+        dc_file_names = ["Assets/direct.dc", "Assets/Interface.dc"]
 
         # distributed objects for our game
         self.level_manager: DLevelManager | None = None
         self.local_level_id = None
         self.local_player_id = None
+
+        self.ready_command = ready_command
+        self.ready_command_arg = ready_command_args
+        self.failed_command = failed_command
+        self.failed_command_args = failed_command_args
 
         self.move_input = Vec2.zero()
         self.jump_pressed = False
@@ -43,17 +48,17 @@ class GameClientRepository(ClientRepository):
                 unexpectedly lost connection to the gameserver. """
         # Handle the disconnection from the server.  This can be a reconnect,
         # simply exiting the application or anything else.
-        print("Lost connection. Attempts reconnect...")
-        self.connect([self.url],
-                     successCallback=self.connect_success,
-                     failureCallback=self.connect_failure)
+        print("Lost connection...")
+        self.failed_command(self.failed_command_args)
+        messenger.send("update_status_title", ["Lost connection, try again later."])
 
     def connect_failure(self, status_code, status_string):
         """ Something went wrong """
         # we could create a reconnect task to try and connect again.
         print("Failed to connect"
               "\nstatus code: {}, status string: {}".format(status_code, status_string))
-        exit()
+        self.failed_command(self.failed_command_args)
+        messenger.send("update_status_title", ["Failed to connect, try again later."])
 
     def connect_success(self):
         """ Successfully connected.  But we still can't really do
@@ -100,10 +105,8 @@ class GameClientRepository(ClientRepository):
 
         # Now the client is ready to create DOs and send and receive data
         # to and from the server
+        self.accept_once(self.uniqueName("Level-Manager-Ready"), self.ready_command, [self.ready_command_arg])
         self.setInterestZones([SERVER_MANAGERS, LEVEL_MANAGER_ZONE])
-
-        print("Client Ready")
-        messenger.send("client-ready")
 
     def update(self):
         level = self.doId2do[self.local_level_id]
@@ -117,7 +120,6 @@ class GameClientRepository(ClientRepository):
         self.level_manager.d_request_join(max_players)
 
     def request_leave(self):
-        self.level_manager.d_request_leave(self.local_level_id, self.local_player_id)
-
-    def quit(self):
-        self.sendDisconnect()
+        if self.local_level_id is not None:
+            self.level_manager.d_request_leave(self.local_level_id, self.local_player_id)
+            self.local_level_id = None
