@@ -1,8 +1,8 @@
 import math
 
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
-from panda3d.core import Filename, PNMImage, NodePath, Vec3
-from panda3d.bullet import BulletWorld, BulletHeightfieldShape, Z_up
+from panda3d.core import Filename, PNMImage, NodePath, Vec3, TransformState
+from panda3d.bullet import BulletWorld, BulletPlaneShape, BulletHeightfieldShape, Z_up
 from Globals import BulletRigidBodyNP, GRAVITY, CHERRIES_TO_WIN, masks
 from DistributedObjects.DCherryAI import DCherryAI
 
@@ -20,8 +20,8 @@ class DLevelAI(DistributedNodeAI):
         self.player_models = {
             "Assets/Models/Doozy.glb": False,
             "Assets/Models/Mousey.glb": False,
-            "models/panda.egg": False,
-            "models/frowney": False
+            "Assets/Models/Claire.glb": False,
+            "Assets/Models/AJ.glb": False
         }
 
         # physics
@@ -40,6 +40,38 @@ class DLevelAI(DistributedNodeAI):
         self.terrain_rigidbody_np.node().add_shape(collider)
         self.terrain_rigidbody_np.set_collide_mask(masks["terrain"])
         self.world.attach(self.terrain_rigidbody_np.node())
+
+        # world boundaries as plane colliders
+        bounds = []
+        offset = self.height_map.get_x_size() * 0.5
+
+        boundary = BulletPlaneShape(Vec3(-1, 0, 0), -offset)
+        boundary_np = BulletRigidBodyNP("Boundary_0")
+        boundary_np.node().add_shape(boundary)
+        boundary_np.set_collide_mask(masks["terrain"])
+        self.world.attach(boundary_np.node())
+        bounds.append(boundary_np)
+
+        boundary = BulletPlaneShape(Vec3(0, -1, 0), -offset)
+        boundary_np = BulletRigidBodyNP("Boundary_1")
+        boundary_np.node().add_shape(boundary)
+        boundary_np.set_collide_mask(masks["terrain"])
+        self.world.attach(boundary_np.node())
+        bounds.append(boundary_np)
+
+        boundary = BulletPlaneShape(Vec3(1, 0, 0), -offset)
+        boundary_np = BulletRigidBodyNP("Boundary_2")
+        boundary_np.node().add_shape(boundary)
+        boundary_np.set_collide_mask(masks["terrain"])
+        self.world.attach(boundary_np.node())
+        bounds.append(boundary_np)
+
+        boundary = BulletPlaneShape(Vec3(0, 1, 0), -offset)
+        boundary_np = BulletRigidBodyNP("Boundary_3")
+        boundary_np.node().add_shape(boundary)
+        boundary_np.set_collide_mask(masks["terrain"])
+        self.world.attach(boundary_np.node())
+        bounds.append(boundary_np)
 
         base.task_mgr.add(self.can_start, "can-start-level")
         self.update_task = None

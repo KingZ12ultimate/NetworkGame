@@ -21,7 +21,7 @@ class MainMenu(GUIHandler):
         GUIHandler.__init__(self, True, root_parent)
         self.main_menu = DirectFrame(frameColor=(1, 1, 1, 0))
 
-        self.title = DirectLabel(text="VIDEO GAMES",
+        self.title = DirectLabel(text="Cherry Heist",
                                  scale=0.3,
                                  pos=(0, 0, 0.7),
                                  parent=self.main_menu,
