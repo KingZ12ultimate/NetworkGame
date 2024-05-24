@@ -34,7 +34,7 @@ class AIRepository(ClientRepository):
 
     def connect_failure(self, status_code, status_string):
         """ Something went wrong """
-        print("Couldn't connect. Make sure to run server.py first!"
+        print("Couldn't connect. Make sure to activate the server repository first!"
               "\nstatus code: {}, status string: {}".format(status_code, status_string))
         exit()
 
