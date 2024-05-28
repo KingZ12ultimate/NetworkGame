@@ -1,8 +1,7 @@
 import math
-import numpy as np
 
 from panda3d.core import NodePath, Vec2, Quat
-from Globals import lerp, _distance, move_towards_angle, delta_angle
+from Globals import lerp, _distance, move_towards_angle, delta_angle, clip
 from Input import global_input
 
 
@@ -18,15 +17,15 @@ class Camera:
         self.previous_focus_point = self.focus_point
         self.distance = distance
         self.focus_radius = max(focus_radius, 0)
-        self.focus_centering = np.clip(focus_centering, 0, 1)
+        self.focus_centering = clip(focus_centering, 0, 1)
 
         # Camera orientation variables
         self.orbit_angles = Vec2(0, 45)  # x component is heading, y component is pitch
-        self.rotation_speed = np.clip(rotation_speed, 1, 360)
-        self.min_pitch = np.clip(min_pitch, -89, 89)
-        self.max_pitch = np.clip(max_pitch, min_pitch, 89)
+        self.rotation_speed = clip(rotation_speed, 1, 360)
+        self.min_pitch = clip(min_pitch, -89, 89)
+        self.max_pitch = clip(max_pitch, min_pitch, 89)
         self.align_delay = max(align_delay, 0)
-        self.align_smooth_range = np.clip(align_smooth_range, 0, 90)
+        self.align_smooth_range = clip(align_smooth_range, 0, 90)
         self.last_manual_rotation_time = 0
 
         self.cam.set_z(5)
@@ -67,7 +66,7 @@ class Camera:
         return True
 
     def constrain_angles(self):
-        self.orbit_angles.set_y(np.clip(self.orbit_angles.get_y(), self.min_pitch, self.max_pitch))
+        self.orbit_angles.set_y(clip(self.orbit_angles.get_y(), self.min_pitch, self.max_pitch))
         if self.orbit_angles.get_x() < 0:
             self.orbit_angles.add_x(360)
         elif self.orbit_angles.get_x() >= 360:

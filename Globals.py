@@ -23,6 +23,10 @@ masks = {
 def lerp(a, b, t): return a * (1 - t) + b * t
 
 
+def clip(val, _min, _max):
+    return _min if val < _min else _max if val > _max else val
+
+
 def clamp_angle(x):
     while not (0 <= x < 360):
         if x < 0:
