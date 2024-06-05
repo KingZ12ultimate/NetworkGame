@@ -57,7 +57,9 @@ class GameClient(ShowBase, FSM):
             self.loader.load_texture("UI/UIButtonDisabled.png")
         )
 
-        self.status_title = self.add_title("")
+        self.status_title = OnscreenText(text="", pos=(-0.1, 0.12), scale=0.08,
+                                         parent=self.a2dBottomRight, align=TextNode.ARight,
+                                         fg=(1, 1, 1, 1), shadow=(0, 0, 0, 1))
         self.status_title.hide()
         self.accept("update_status_title", self.update_status_title)
 
@@ -121,10 +123,12 @@ class GameClient(ShowBase, FSM):
         }
         self.accept_dict(self.current_menu_events)
 
-    def exitMainMenu(self):
-        self.current_menu.destroy()
-        del self.current_menu
-        self.ignore_dict(self.current_menu_events)
+    def defaultExit(self):
+        if self.current_menu is not None:
+            self.current_menu.destroy()
+            del self.current_menu
+            self.ignore_dict(self.current_menu_events)
+        FSM.defaultExit(self)
 
     def enterLevelMenu(self):
         if self.menu_music.status() is self.menu_music.READY:
@@ -138,24 +142,15 @@ class GameClient(ShowBase, FSM):
         }
         self.accept_dict(self.current_menu_events)
 
-    def exitLevelMenu(self):
-        self.current_menu.destroy()
-        del self.current_menu
-        self.ignore_dict(self.current_menu_events)
-
     def enterWaiting(self, max_players):
         self.current_menu = WaitingScreen(self.button_images, self.sounds["click"], max_players, self.render2d)
         self.current_menu_events = {
-            "player_joined": self.current_menu.update_players_label,
+            "player_joined": [self.current_menu.update_players_label, [1]],
+            "player_left": [self.current_menu.update_players_label, [-1]],
             "start_level": [self.request, ["Playing"]],
             "leave": self.clean_exit
         }
         self.accept_dict(self.current_menu_events)
-
-    def exitWaiting(self):
-        self.current_menu.destroy()
-        del self.current_menu
-        self.ignore_dict(self.current_menu_events)
 
     def enterPlaying(self, player_ids=None):
         if player_ids is None:
@@ -191,11 +186,6 @@ class GameClient(ShowBase, FSM):
             "stop_sound": self.stop_sound
         }
         self.accept_dict(self.current_menu_events)
-
-    def exitPlaying(self):
-        self.current_menu.destroy()
-        del self.current_menu
-        self.ignore_dict(self.current_menu_events)
 
     def enterGameOver(self):
         self.music_volume = self.menu_music_volume
@@ -371,12 +361,6 @@ class GameClient(ShowBase, FSM):
         def hide_title(task):
             self.status_title.hide()
         self.task_mgr.do_method_later(3.0, hide_title, "hide_title")
-
-    def add_title(self, text):
-        """Function to put title on the screen."""
-        return OnscreenText(text=text, pos=(-0.1, 0.09), scale=0.08,
-                            parent=self.a2dBottomRight, align=TextNode.ARight,
-                            fg=(1, 1, 1, 1), shadow=(0, 0, 0, 1))
     # endregion
 
 

@@ -1,7 +1,7 @@
 import math
 
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
-from panda3d.core import Filename, PNMImage, NodePath, Vec3, TransformState
+from panda3d.core import Filename, PNMImage, NodePath, Vec3
 from panda3d.bullet import BulletWorld, BulletPlaneShape, BulletHeightfieldShape, Z_up
 from Globals import BulletRigidBodyNP, GRAVITY, CHERRIES_TO_WIN, masks
 from DistributedObjects.DCherryAI import DCherryAI

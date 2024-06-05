@@ -25,8 +25,6 @@ dclass DLevelManager: DistributedObject {
 };
 
 dclass DLevel: DistributedNode {
-    generate_cherries() p2p;
-    request_start() p2p;
     start_level(uint32 player_ids[]) broadcast;
     end_level() broadcast;
 };
@@ -44,7 +42,7 @@ dclass DPlayer: DActor {
     send_input(PlayerInput p_input) p2p;
     set_model(string path) broadcast;
     set_model_hpr(int16 % 360 / 10, int16 % 360 / 10, int16 % 360 / 10) clsend broadcast;
-    set_score(uint32 player_id, uint16 score) broadcast;
+    set_score(uint16 score) broadcast;
 };
 
 dclass DCherry: DistributedNode {

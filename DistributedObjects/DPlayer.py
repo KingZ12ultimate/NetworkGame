@@ -1,7 +1,7 @@
 from direct.interval.LerpInterval import LerpQuatInterval
 from direct.showbase.MessengerGlobal import messenger
 from DistributedObjects.DActor import DActor
-from panda3d.core import Vec3, NodePath, Quat
+from panda3d.core import Vec3, Quat
 from Input import global_input
 from Globals import player_model_scale
 from math import atan2, sin, cos
@@ -11,7 +11,7 @@ class DPlayer(DActor):
     def __init__(self, cr):
         DActor.__init__(self, cr)
 
-        self.input_space: NodePath = base.render
+        self.input_space = base.render
         self.move_input = Vec3(0, 0, 0)
         self.rotation_duration = 0.2
         self.rotation_interval = None
@@ -26,6 +26,7 @@ class DPlayer(DActor):
 
     def delete(self):
         print("deleting player object", self.doId)
+        messenger.send("player_left")
         DActor.delete(self)
 
     # region Rotation
@@ -49,9 +50,6 @@ class DPlayer(DActor):
         hpr = self.actor.get_hpr()
         self.d_set_model_hpr(hpr.get_x(), hpr.get_y(), hpr.get_z())
 
-    def get_model_hpr(self):
-        return self.actor.get_h(), self.actor.get_p(), self.actor.get_r()
-
     def set_model_hpr(self, h, p, r):
         self.actor.set_hpr(h, p, r)
 
@@ -71,10 +69,10 @@ class DPlayer(DActor):
             right = self.input_space.get_quat().get_right()
             right.set_z(0)
             right.normalize()
-            move_input = global_input.move_input
+            move_input = global_input.move_input()
             res = right * move_input.get_x() + forward * move_input.get_y()
         else:
-            res = Vec3(global_input.move_input, 0)
+            res = Vec3(global_input.move_input(), 0)
         res.normalize()
         return res
 
@@ -88,7 +86,7 @@ class DPlayer(DActor):
 
         # Reset jump input if True
         if p_input[3]:
-            global_input.set_jump_pressed(False)
+            global_input.jump_pressed = False
     # endregion
 
     def update(self):
@@ -112,9 +110,9 @@ class DPlayer(DActor):
         size = box[1] - box[0]
         self.actor.set_z(-0.5 * size.get_z())
 
-    def set_score(self, player_id, value):
+    def set_score(self, value):
         self.score = value
-        messenger.send("update_score", [player_id, value])
+        messenger.send("update_score", [self.doId, value])
 
     def d_ready(self):
         self.sendUpdate("set_ready")

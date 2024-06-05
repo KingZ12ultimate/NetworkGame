@@ -1,7 +1,6 @@
 from direct.showbase.MessengerGlobal import messenger
 from direct.distributed.ClientRepository import ClientRepository
-from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString, Vec2
-from DistributedObjects.DLevelManager import DLevelManager
+from panda3d.core import URLSpec, ConfigVariableInt, ConfigVariableString
 from Globals import HOST, PORT, SERVER_MANAGERS, LEVEL_MANAGER_ZONE
 
 
@@ -10,7 +9,7 @@ class GameClientRepository(ClientRepository):
         dc_file_names = ["Assets/direct.dc", "Assets/Interface.dc"]
 
         # distributed objects for our game
-        self.level_manager: DLevelManager | None = None
+        self.level_manager = None
         self.local_level_id = None
         self.local_player_id = None
 
@@ -18,9 +17,6 @@ class GameClientRepository(ClientRepository):
         self.ready_command_arg = ready_command_args
         self.failed_command = failed_command
         self.failed_command_args = failed_command_args
-
-        self.move_input = Vec2.zero()
-        self.jump_pressed = False
 
         ClientRepository.__init__(self, dcFileNames=dc_file_names, threadedNet=True)
 

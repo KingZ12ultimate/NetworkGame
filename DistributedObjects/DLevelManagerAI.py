@@ -7,8 +7,6 @@ from DistributedObjects.DPlayerAI import DPlayerAI
 
 
 class DLevelManagerAI(DistributedObjectAI):
-    MAX_PLAYERS = 2
-
     def __init__(self, air):
         DistributedObjectAI.__init__(self, air)
 
@@ -17,12 +15,6 @@ class DLevelManagerAI(DistributedObjectAI):
             Globals.MIN_LEVEL_ZONE,
             Globals.MAX_LEVEL_ZONE
         )
-
-        self.task_chain_name = "level-update-chain"
-        base.task_mgr.setupTaskChain(self.task_chain_name, numThreads=4)
-
-    def announceGenerate(self):
-        DistributedObjectAI.announceGenerate(self)
 
     def delete(self):
         self.levels = []

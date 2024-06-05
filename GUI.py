@@ -21,7 +21,7 @@ class MainMenu(GUIHandler):
         GUIHandler.__init__(self, True, root_parent)
         self.main_menu = DirectFrame(frameColor=(1, 1, 1, 0))
 
-        self.title = DirectLabel(text="Cherry Heist",
+        title = DirectLabel(text="Cherry Heist",
                                  scale=0.3,
                                  pos=(0, 0, 0.7),
                                  parent=self.main_menu,
@@ -134,8 +134,8 @@ class WaitingScreen(GUIHandler):
                            text_pos=(0, -0.2))
         btn.set_transparency(1)
 
-    def update_players_label(self):
-        self.players_joined += 1
+    def update_players_label(self, val):
+        self.players_joined += val
         self.players_connected_label["text"] = "Players joined: {} / {}".format(self.players_joined, self.max_players)
 
     def destroy(self):
@@ -189,10 +189,8 @@ class GameplayGUI(GUIHandler):
             button.destroy()
 
 
-class InfoMenu(GUIHandler):
+class InfoMenu:
     def __init__(self, button_images, click_sound):
-        GUIHandler.__init__(self, False)
-
         self.dialog = DirectDialog(frameSize=(-0.8, 0.8, -0.7, 0.7),
                                    fadeScreen=0.4,
                                    relief=DGG.FLAT,
@@ -237,10 +235,8 @@ class InfoMenu(GUIHandler):
         self.dialog.destroy()
 
 
-class PauseMenu(GUIHandler):
+class PauseMenu:
     def __init__(self, button_images, click_sound):
-        GUIHandler.__init__(self, False)
-
         self.dialog = DirectDialog(frameSize=(-0.7, 0.7, -0.7, 0.7),
                                    fadeScreen=0.4,
                                    relief=DGG.FLAT,

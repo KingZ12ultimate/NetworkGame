@@ -11,13 +11,13 @@ class DLevel(DistributedNode):
         self.terrain = GeoMipTerrain("LevelTerrain")
         self.terrain.set_heightfield("Assets/Textures/HeightMap.png")
 
-        self.height = 10
-        self.height_map = self.terrain.heightfield()
-        offset = -self.height_map.get_x_size() * 0.5
+        height = 10
+        height_map = self.terrain.heightfield()
+        offset = -height_map.get_x_size() * 0.5
 
         self.terrain.get_root().reparent_to(self)
-        self.terrain.get_root().set_sz(self.height)
-        self.terrain.get_root().set_pos(offset, offset, -self.height * 0.5)
+        self.terrain.get_root().set_sz(height)
+        self.terrain.get_root().set_pos(offset, offset, -height * 0.5)
 
         # set terrain properties
         self.terrain.set_block_size(64)

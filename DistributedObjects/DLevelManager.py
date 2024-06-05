@@ -52,7 +52,6 @@ class DLevelManager(DistributedObject):
         )
 
     def level_manifested(self, all_objects):
-        self.cr.level = self.cr.doId2do[self.cr.local_level_id]
-        self.cr.player = self.cr.doId2do[self.cr.local_player_id]
-        self.cr.player.d_ready()
+        player = self.cr.doId2do[self.cr.local_player_id]
+        player.d_ready()
         print("Level manifested")

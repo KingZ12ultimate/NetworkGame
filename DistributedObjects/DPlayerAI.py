@@ -32,8 +32,6 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
         self.min_speed = 0.01
         self.acceleration = 150.0
         self.friction = 100.0
-        self.air_friction = 3.0
-        self.gravity_multiplier = 5.0
 
         self.max_ground_angle = 45
         self.contact_normal = Vec3(0, 0, 0)
@@ -194,7 +192,7 @@ class DPlayerAI(DActorAI, BulletRigidBodyNP, FSM):
 
     def d_add_score(self, value):
         self.score += value
-        self.sendUpdate("set_score", [self.doId, self.score])
+        self.sendUpdate("set_score", [self.score])
 
     def d_play_sound(self, name):
         self.sendUpdate("play_sound", [name])

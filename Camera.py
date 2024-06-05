@@ -39,7 +39,7 @@ class Camera:
         return angle if direction.get_x() < 0 else 360 - angle
 
     def manual_rotation(self, dt):
-        look_input = global_input.look_input
+        look_input = global_input.look_input()
         if look_input != Vec2.zero():
             self.orbit_angles += look_input * self.rotation_speed * dt
             self.last_manual_rotation_time = base.clock.get_real_time()

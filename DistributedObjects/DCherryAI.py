@@ -1,26 +1,25 @@
 from direct.distributed.DistributedNodeAI import DistributedNodeAI
-from direct.showbase.MessengerGlobal import messenger
 from panda3d.bullet import BulletGhostNode, BulletSphereShape
 from panda3d.core import NodePath
 from Globals import masks
 
 
-class BulletGhostNodeNP(NodePath):
+class BulletGhostNP(NodePath):
     def __init__(self, name="Ghost"):
         NodePath.__init__(self, BulletGhostNode(name))
 
 
-class DCherryAI(DistributedNodeAI, BulletGhostNodeNP):
+class DCherryAI(DistributedNodeAI, BulletGhostNP):
     COUNT = 0
 
     def __init__(self, air, level, pos=(0, 0, 0)):
         self.COUNT += 1
         DistributedNodeAI.__init__(self, air)
-        BulletGhostNodeNP.__init__(self, "Cherry" + str(self.COUNT))
+        BulletGhostNP.__init__(self, "Cherry" + str(self.COUNT))
 
         self.level = level
-        self.model = base.loader.load_model("Assets/Models/cherries.glb")
-        box = self.model.get_tight_bounds()
+        model = base.loader.load_model("Assets/Models/cherries.glb")
+        box = model.get_tight_bounds()
         size = box[1] - box[0]
         radius = max(size.get_x(), size.get_y(), size.get_z()) * 0.5
         self.node().add_shape(BulletSphereShape(radius))
@@ -29,8 +28,6 @@ class DCherryAI(DistributedNodeAI, BulletGhostNodeNP):
         self.set_collide_mask(masks["cherry"])
         self.level.world.attach(self.node())
         self.set_pos(pos)
-
-        self.value = 1
 
     def delete(self):
         self.remove_node()
@@ -42,7 +39,7 @@ class DCherryAI(DistributedNodeAI, BulletGhostNodeNP):
                 if "Player" in node.get_name():
                     do_id = int(node.get_name().split("-")[1])
                     player = self.air.doId2do[do_id]
-                    player.d_add_score(self.value)
+                    player.d_add_score(1)
                     player.d_play_sound("pickup")
                     self.level.remove_cherry(self.doId)
                     self.air.sendDeleteMsg(self.doId)
