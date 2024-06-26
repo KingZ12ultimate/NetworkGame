@@ -7,6 +7,9 @@ from Globals import BulletRigidBodyNP, GRAVITY, CHERRIES_TO_WIN, masks
 from DistributedObjects.DCherryAI import DCherryAI
 
 
+basedir = ""
+
+
 class DLevelAI(DistributedNodeAI):
     SIZE = 1024
     NUM_CHERRIES_PER_ROW = 20
@@ -33,7 +36,7 @@ class DLevelAI(DistributedNodeAI):
 
         # terrain properties
         self.height = 10
-        self.height_map = PNMImage(Filename("Assets/Textures/HeightMap.png"))
+        self.height_map = PNMImage(Filename(basedir + "Assets/Textures/HeightMap.png"))
         self.terrain_rigidbody_np = BulletRigidBodyNP("Terrain")
 
         collider = BulletHeightfieldShape(self.height_map, self.height, Z_up)

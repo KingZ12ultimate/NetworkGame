@@ -3,13 +3,16 @@ from direct.showbase.MessengerGlobal import messenger
 from panda3d.core import GeoMipTerrain
 
 
+basedir = ""
+
+
 class DLevel(DistributedNode):
     def __init__(self, cr):
         DistributedNode.__init__(self, cr)
 
         # initiate the terrain
         self.terrain = GeoMipTerrain("LevelTerrain")
-        self.terrain.set_heightfield("Assets/Textures/HeightMap.png")
+        self.terrain.set_heightfield(basedir + "Assets/Textures/HeightMap.png")
 
         height = 10
         height_map = self.terrain.heightfield()
